@@ -1,103 +1,148 @@
-import ApplicationLogo from 'components/ApplicationLogo'
-import AuthCard from 'components/AuthCard'
-import AuthSessionStatus from 'components/AuthSessionStatus'
-import AuthValidationErrors from 'components/AuthValidationErrors'
-import Button from 'components/Button'
-import GuestLayout from 'components/Layouts/GuestLayout'
-import Input from 'components/Input'
-import Label from 'components/Label'
-import { useAuth } from 'hooks/auth'
-import { useState } from 'react'
-import { Link, NavLink} from 'react-router-dom';
+import ApplicationLogo from 'components/ApplicationLogo';
+import AuthCard from 'components/AuthCard';
+import AuthSessionStatus from 'components/AuthSessionStatus';
+import AuthValidationErrors from 'components/AuthValidationErrors';
+import Button from 'components/Button';
+import GuestLayout from 'components/Layouts/GuestLayout';
+import Input from 'components/Input';
+import Label from 'components/Label';
+import { useAuth } from 'hooks/auth';
+import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
-
   const { login } = useAuth({
     middleware: 'guest',
-    redirectIfAuthenticated: '/dashboard'
-  })
+    redirectIfAuthenticated: '/dashboard',
+  });
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState([])
-  const [status, setStatus] = useState(null)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [status, setStatus] = useState(null);
+  // show password and active style
+  const [states, setStates] = useState([{ show: false }, { active: false }]);
+  // active style
+  const [active, setActive] = useState(false);
 
-  const submitForm = async event => {
-    event.preventDefault()
-    login({ email, password, setErrors, setStatus })
-  }
+  const submitForm = async (event) => {
+    event.preventDefault();
+    login({ email, password, setErrors, setStatus });
+  };
 
   return (
-    <GuestLayout>
-      <AuthCard
-        logo={
-          <Link to="/">
-            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-          </Link>
-        }>
+    <GuestLayout
+      logo={
+        <Link to="/">
+          <ApplicationLogo className="w-48 h-18 fill-current text-gray-500" />
+        </Link>
+      }
+    >
+      <AuthCard>
         {/* Session Status */}
         <AuthSessionStatus className="mb-4" status={status} />
         {/* Validation Errors */}
         <AuthValidationErrors className="mb-4" errors={errors} />
-        <form onSubmit={submitForm}>
+        <div className="text-center md:text-left">
+          <h1 className="text-2xl text-gray-800 dark:text-gray-200 font-bold py-3">
+            <span>Inicia con tu cuenta</span>
+            <span className="text-fblue-100 text-xl m-1">.</span>
+          </h1>
+          <span className="font-bold text-sm text-gray-700 dark:text-gray-300">
+            <span>Revisa tus cursos y notas</span>
+          </span>
+        </div>
+        <form
+          className="lg:w-6/12 pb-10 xl:w-4/12 w-full grid grid-cols-1 p-2"
+          onSubmit={submitForm}
+          autoComplete="off"
+        >
           {/* Email Address */}
-          <div>
+          <div
+            onFocus={() => setActive(true)}
+            onBlur={() => setActive(false)}
+            className={`form__inputs col-span-2 my-4 ${
+              active && email && 'input__active'
+            }`}
+          >
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
               value={email}
               className="block mt-1 w-full"
-              onChange={event => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               required
-              autoFocus
+              autoComplete="email"
             />
           </div>
           {/* Password */}
-          <div className="mt-4">
-            <Label htmlFor="password">Password</Label>
+          <div
+            onFocus={() =>
+              setStates(
+                states.map((s) => (s.active === false ? { active: true } : s)),
+              )
+            }
+            onBlur={() =>
+              setStates(
+                states.map((s) => (s.active === true ? { active: false } : s)),
+              )
+            }
+            className={`form__inputs col-span-2 ${
+              states[1].active && password && 'input__active'
+            }`}
+          >
+            <Label htmlFor="password">
+              Password
+              {states[0].show ? (
+                <FaRegEyeSlash
+                  onClick={() =>
+                    setStates(
+                      states.map((s) => (s.show == true ? { show: false } : s)),
+                    )
+                  }
+                  className={`cursor-pointer h-5 w-5 absolute right-4 `}
+                />
+              ) : (
+                <FaRegEye
+                  onClick={() =>
+                    setStates(
+                      states.map((s) => (s.show == false ? { show: true } : s)),
+                    )
+                  }
+                  className={`cursor-pointer h-5 w-5 absolute right-4`}
+                />
+              )}
+            </Label>
             <Input
               id="password"
-              type="password"
+              type={states[0].show ? 'text' : 'password'}
               value={password}
               className="block mt-1 w-full"
-              onChange={event => setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
               required
               autoComplete="current-password"
             />
           </div>
           {/* Remember Me */}
-          <div className="block mt-4">
-            <label
-              htmlFor="remember_me"
-              className="inline-flex items-center">
-              <input
-                id="remember_me"
-                type="checkbox"
-                name="remember"
-                className="rounded border-gray-300 text-indigo-600
-                shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              />
-              <span className="ml-2 text-sm text-gray-600">
-                  Remember me
-              </span>
+          <div className="flex mt-4 col-span-2">
+            <label htmlFor="remember_me" className="block">
+              <NavLink
+                to="/forgot-password"
+                className="underline flex justify-end items-end text-sm text-gray-400 hover:text-blue-500"
+              >
+                Contraseña olvidada?
+              </NavLink>
             </label>
           </div>
-          <div className="flex items-center justify-end mt-4">
-            <NavLink
-              to="/forgot-password"
-              className="underline text-sm text-gray-600 hover:text-gray-900"
-            >
-                Forgot your password?
-            </NavLink>
-            <Button className="ml-3">
-                Login
-            </Button>
-          </div>
+
+          <Button className="ml-0 w-full">Login</Button>
         </form>
       </AuthCard>
     </GuestLayout>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
