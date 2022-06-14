@@ -41,7 +41,7 @@ code {
 
 /* form inputes "general style" */
 .form__inputs {
-  @apply dark:bg-[#323644] bg-[#a3a3af] pl-5 pb-2 relative rounded-xl transition-colors;
+  @apply dark:bg-[#323644] bg-[#a3a3af] pl-5 pb-1 relative rounded-xl transition-colors;
 }
 .form__inputs span {
   @apply dark:text-gray-400 text-gray-700 text-xs transition-colors;

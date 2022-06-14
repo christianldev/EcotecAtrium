@@ -1,10 +1,12 @@
+import ProgressBar from 'components/ProgressBar';
 import { NavLink } from 'react-router-dom';
 import '../../App.css';
 
-const GuestLayout = ({ logo, children }) => {
+const GuestLayout = ({ logo, children, loading }) => {
   return (
     <section className="app h-screen bg-center bg-cover bg-no-repeat bg__auth objec-cover">
       <main className="dark bg-gradient h-full">
+        {loading && <ProgressBar loading={true} percent={50} size={'medium'} />}
         <div className="container mx-auto md:px-20 px-5">
           <div className="flex items-center">
             <div className="my-3 flex items-center w-fit">
@@ -14,7 +16,7 @@ const GuestLayout = ({ logo, children }) => {
             </div>
             <div className="flex-1 text-gray-500 dark:text-gray-400 font-semibold text-sm">
               <span className="cursor-pointer px-5">
-                <NavLink to="/login">Iniciar Sesión</NavLink>
+                <NavLink to="/">Iniciar Sesión</NavLink>
               </span>
               <NavLink to="/register">
                 <span className="cursor-pointer px-5 md:inline hidden">
@@ -39,7 +41,7 @@ const GuestLayout = ({ logo, children }) => {
             </div>
           </div>
         </div>
-        <div className="container mt-4  mx-auto md:px-20 px-5 dark">
+        <div className="container   mx-auto md:px-20 px-5 dark mt-10">
           {children}
         </div>
       </main>
