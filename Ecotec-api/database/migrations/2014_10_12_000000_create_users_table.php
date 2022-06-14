@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('photo')->nullable();
             $table->date('birthday')->nullable();
+            $table->id('campus_id')->nullable();
+            $table->id('department_id')->nullable();
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
