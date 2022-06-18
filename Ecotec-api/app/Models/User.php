@@ -2,39 +2,47 @@
 
 namespace App\Models;
 
+use App\Models\Mark;
+use App\Models\StudentParentInfo;
+use App\Models\StudentAcademicInfo;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasRoles, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'password',
         'gender',
-        'nationality',  
+        'nationality',
         'phone',
         'address',
+        'address2',
         'city',
+        'zip',
         'photo',
         'birthday',
+        'religion',
+        'blood_type',
         'role',
-        'password'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -42,11 +50,35 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the parent_info.
+     */
+    public function parent_info()
+    {
+        return $this->hasOne(StudentParentInfo::class, 'student_id', 'id');
+    }
+
+    /**
+     * Get the academic_info.
+     */
+    public function academic_info()
+    {
+        return $this->hasOne(StudentAcademicInfo::class, 'student_id', 'id');
+    }
+
+    /**
+     * Get the marks.
+     */
+    public function marks()
+    {
+        return $this->hasMany(Mark::class, 'student_id', 'id');
+    }
 }
