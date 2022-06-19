@@ -1,11 +1,13 @@
-import Axios from 'axios'
+import Axios from 'axios';
 
 const axios = Axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   headers: {
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
   },
-  withCredentials: true
-})
+  withCredentials: true,
+});
 
-export default axios
+export default axios;
