@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
     {
 
         $user = \App\Models\User::factory()->create([
-            'email' => 'admin@ut.com',
+            'email' => 'clopez@gmail.com',
             'first_name' => 'Christian',
             'last_name' => 'Lopez'
         ]);

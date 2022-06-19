@@ -37,7 +37,7 @@ class UserFactory extends Factory
             'city'          => 'Dhaka',
             'zip'           => '32545',
             'photo'         => null,
-            'role'          => 'admin',
+            'role'          => 1,
         ];
     }
 

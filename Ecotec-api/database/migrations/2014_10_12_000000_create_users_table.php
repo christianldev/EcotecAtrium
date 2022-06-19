@@ -14,7 +14,8 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->uuid('uuid')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
@@ -29,11 +30,13 @@ class CreateUsersTable extends Migration
             $table->string('birthday')->nullable();
             $table->string('blood_type')->nullable();
             $table->string('religion')->nullable();
-            $table->string('role');
+            $table->unsignedBigInteger('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('role')->references('id')->on('roles');
         });
     }
 
