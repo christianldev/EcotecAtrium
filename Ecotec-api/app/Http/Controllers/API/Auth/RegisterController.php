@@ -80,6 +80,7 @@ class RegisterController extends Controller
 
         return response()->json([
             'message' => 'Usuario registrado con éxito',
+           
         ], 201);
     }
 }

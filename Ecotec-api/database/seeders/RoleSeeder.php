@@ -21,7 +21,6 @@ class RoleSeeder extends Seeder
             'email' => 'clopez@gmail.com',
             'first_name' => 'Christian',
             'last_name' => 'Lopez',
-           
         ]);
  
 
