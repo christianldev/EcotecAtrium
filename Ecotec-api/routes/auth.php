@@ -16,10 +16,14 @@ Route::group([
     Route::post('login', [LoginController::class, 'login']);
  
     Route::post('refresh', [LoginController::class, 'refresh']);
+
+    Route::post('register', [RegisterController::class, 'register']);
+    // Route::post('refresh', 'AuthController@refresh');
     // Route::post('me', 'AuthController@me');
 });
 
 Route::controller(LoginController::class)->middleware("auth:api")->group(function () {
+
     Route::post('register', [RegisterController::class, 'register']);
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
