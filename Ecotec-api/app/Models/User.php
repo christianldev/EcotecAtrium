@@ -3,18 +3,28 @@
 namespace App\Models;
 
 use App\Models\Mark;
+use Illuminate\Support\Str;
 use App\Models\StudentParentInfo;
 use App\Models\StudentAcademicInfo;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasRoles, HasFactory, Notifiable;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->uuid = (string) Str::uuid();
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +35,7 @@ class User extends Authenticatable implements JWTSubject
         'first_name',
         'last_name',
         'email',
+        'dni',
         'password',
         'gender',
         'nationality',
@@ -37,7 +48,6 @@ class User extends Authenticatable implements JWTSubject
         'birthday',
         'religion',
         'blood_type',
-        'role',
     ];
 
     /**
@@ -105,8 +115,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Mark::class, 'student_id', 'id');
     }
     
-    public function role()
-    {
-        return $this->hasOne(Role::class, 'id', 'role');
-    }
+    // public function role()
+    // {
+    //     return $this->hasOne(Role::class, 'id', 'role');
+    // }
 }
