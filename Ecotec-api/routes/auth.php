@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => 'guest',
 
 ], function () {
     Route::post('login', [LoginController::class, 'login']);
 });
 
 Route::controller(LoginController::class)->middleware("jwt.verify")->group(function () {
+    Route::get('refresh', 'refresh');
     Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
     Route::get('profile', 'userProfile');
 });
 

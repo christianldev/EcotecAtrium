@@ -10,6 +10,7 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenBlacklistedException;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTFactory;
 
 class LoginController extends Controller
 {
@@ -27,25 +28,31 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
+        $credentials = $request->only('email', 'password');
+
+        $validator = Validator::make($credentials, [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+        if( $validator->fails() ) {
+            return response()->json($validator->errors()->toJson(), 400);
         }
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-        if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Credenciales invalidas'], 401);
+        if(!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        
-        return $this->createNewToken($token);
+        $role = auth()->user()->roles->first()->name;
+
+        $user = auth()->user()->only(['uuid', 'first_name', 'last_name', 'email']);
+
+        $user['role'] = $role;
+
+    
+       
+        return $this->createNewToken( $user);
+
     }
 
      /**
@@ -74,22 +81,13 @@ class LoginController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
+        
         $token = JWTAuth::getToken();
+        $token = JWTAuth::refresh($token);
+        return response()->json([
+            'success' => true, 'token' => $token
+        ], 200);
 
-        try {
-            $token = $this->createNewToken(auth()->refresh());
-            return response()->json(['success' => true, 'token' => $token], 200);
-        } catch (TokenExpiredException $ex) {
-            // We were unable to refresh the token, our user needs to login again
-            return response()->json([
-                 'success' => false, 'message' => 'Need to login again, please (expired)!'
-            ]);
-        } catch (TokenBlacklistedException $ex) {
-            // Blacklisted token
-            return response()->json([
-                 'success' => false, 'message' => 'Need to login again, please (blacklisted)!'
-            ], 422);
-        }
         
     }
 
@@ -115,21 +113,19 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function createNewToken($token){
+    protected function createNewToken( $user) {
 
+        $payload = JWTFactory::sub($user['uuid'])
+        ->user($user)
+        ->make();
       
+       $reponse = JWTAuth::encode($payload);
+       $reponse = $reponse->get();
 
         return response()->json([
-            'access_token' => $token,
+            'access_token' => $reponse,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 120,
-            'user' => [
-                'uuid' => auth()->user()->uuid,
-                'first_name' => auth()->user()->first_name,
-                'last_name' => auth()->user()->last_name,
-                'email' => auth()->user()->email,
-                'role' => auth()->user()->roles->first()->name
-            ]
+            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
   
