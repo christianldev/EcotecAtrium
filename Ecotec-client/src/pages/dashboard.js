@@ -1,40 +1,73 @@
-import axios from 'axios';
 import AppLayout from 'components/Layouts/AppLayout';
-import { useEffect } from 'react';
+import Navigation from 'components/Layouts/Navigation';
+import MainDashboard from 'components/MainDashboard';
+import SwitcherDarkMode from 'components/SwitcherDarkMode';
+import useAxiosPrivate from 'hooks/useAxiosPrivate';
 
-const Dashboard = () => (
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+const Dashboard = () => {
+  const [users, setUsers] = useState([{}]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
-    axios
-      .get('http://127.0.0.1:8000/api/users')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        console.log('finally');
-      });
-  }),
-  (
-    <AppLayout
-      header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-          Dashboard
-        </h2>
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getUsers = async () => {
+      try {
+        const response = await axiosPrivate.get('/users', {
+          signal: controller.signal,
+        });
+
+        if (response.status === 200) {
+          const { data: usersData } = response;
+          if (isMounted) {
+            setUsers(usersData.data);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        navigate('/', { state: { from: location }, replace: true });
       }
-    >
-      <div className="py-12">
+    };
+
+    getUsers();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return (
+    <AppLayout>
+      <SwitcherDarkMode />
+      {/* <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 bg-white border-b border-gray-200">
-              You're logged in!
+              Usuarios
             </div>
+            {users?.length ? (
+              <ul className="p-4">
+                {users.map((user, i) => (
+                  <li key={i}>
+                    {user?.first_name} {user?.last_name}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No users to display</p>
+            )}
           </div>
         </div>
-      </div>
+      </div> */}
+      <MainDashboard />
     </AppLayout>
-  )
-);
+  );
+};
 
 export default Dashboard;

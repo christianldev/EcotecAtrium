@@ -7,19 +7,36 @@ import Home from 'pages/home';
 import ForgotPassword from 'pages/forgot-password';
 import PasswordReset from 'pages/password-reset';
 import NotFoundPage from 'pages/404';
+import AuthProvider from 'auth/AuthProvider';
+import RequireAuth from 'auth/RequireAuth';
+
+const ROLES = {
+  Student: 'student',
+  Teacher: 'teacher',
+  Admin: 'admin',
+};
 
 function App() {
   return (
     <div className="antialiased">
-      <Routes>
-        <Route path="/" element={<Login />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/password-reset/:token" element={<PasswordReset />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route
+            path="/admin"
+            element={
+              <RequireAuth allowedRoles={[ROLES.Admin]}>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+
+          <Route path="/invaliduser" element={<NotFoundPage />} />
+          <Route path="/unauthorised" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }

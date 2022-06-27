@@ -1,22 +1,25 @@
-import Navigation from 'components/Layouts/Navigation'
-import { useAuth } from 'hooks/auth'
+import useAuth from 'hooks/useAuth';
+import Navigation from './Navigation';
+import { Sidebar } from './Sidebar';
 
-const AppLayout = ({ header, children }) => {
-  const { user } = useAuth({ middleware: 'auth' })
-   
+const AppLayout = ({ children }) => {
+  const { auth } = useAuth();
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navigation user={user} />
-      {/* Page Heading */}
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          {header}
-        </div>
-      </header>
-      {/* Page Content */}
-      <main>{children}</main>
-    </div>
-  )
-}
+    <div className="bg-gray-900 h-screen overflow-hidden relative ">
+      <Sidebar />
 
-export default AppLayout
+      <div className="flex flex-col h-screen pl-0 w-full lg:pl-20 lg:space-y-4">
+        <Navigation />
+        {/* Sidebar */}
+
+        {/* Page Content */}
+        <main className="h-screen overflow-auto pb-36 pt-4 px-2 md:pb-8 md:pt-4 lg:pt-0 lg:px-4">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default AppLayout;

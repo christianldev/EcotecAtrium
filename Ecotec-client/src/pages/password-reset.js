@@ -6,7 +6,7 @@ import Button from 'components/Button';
 import GuestLayout from 'components/Layouts/GuestLayout';
 import Input from 'components/Input';
 import Label from 'components/Label';
-import { useAuth } from 'hooks/auth';
+import useAuth from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 

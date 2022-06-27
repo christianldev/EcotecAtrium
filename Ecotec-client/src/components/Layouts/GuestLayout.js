@@ -18,11 +18,7 @@ const GuestLayout = ({ logo, children, loading }) => {
               <span className="cursor-pointer px-5">
                 <NavLink to="/">Iniciar Sesión</NavLink>
               </span>
-              <NavLink to="/register">
-                <span className="cursor-pointer px-5 md:inline hidden">
-                  Registrar
-                </span>
-              </NavLink>
+
               <span title="Change Mode" className="cursor-pointer md:px-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

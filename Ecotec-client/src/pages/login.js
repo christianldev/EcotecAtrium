@@ -6,18 +6,19 @@ import Button from 'components/Button';
 import GuestLayout from 'components/Layouts/GuestLayout';
 import Input from 'components/Input';
 import Label from 'components/Label';
-import { useAuth } from 'hooks/auth';
+import useAuth from 'hooks/useAuth';
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { FaRegEye, FaRegEyeSlash, FaEnvelope } from 'react-icons/fa';
+import axios from 'utils/axios';
+import jwtDecode from 'jwt-decode';
 
 const Login = () => {
-  const { login } = useAuth({
-    middleware: 'guest',
-    redirectIfAuthenticated: '/dashboard',
-  });
+  const { login, setRoles } = useAuth();
 
+  const location = useLocation();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,10 +29,29 @@ const Login = () => {
   // active style
   const [active, setActive] = useState(false);
 
+  const redirect = location.state?.path || '/admin';
+
   const submitForm = async (event) => {
     event.preventDefault();
-    login({ email, password, setErrors, setStatus });
-    setLoading(true);
+    try {
+      const response = await axios.post('/login', {
+        email,
+        password,
+      });
+
+      if (response.data.access_token) {
+        const token = response.data.access_token;
+        const decodedToken = jwtDecode(token);
+        const roles = decodedToken.user.role;
+        login(response.data.access_token);
+        setRoles([roles]);
+        navigate(redirect, { replace: true });
+      } else {
+        setErrors(response.data.errors);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -144,7 +164,7 @@ const Login = () => {
           </label>
         </div>
 
-        <Button className="ml-0 w-full">Login</Button>
+        <Button className="ml-0 w-full">Iniciar</Button>
       </form>
     </GuestLayout>
   );

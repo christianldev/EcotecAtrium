@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { useAuth } from 'hooks/auth';
+import useAuth from 'hooks/useAuth';
 import reactLogo from 'images/logo512.png';
 
 function Home() {
-  const { user } = useAuth({ middleware: 'guest' });
+  const { auth } = useAuth();
 
   return (
     <div
@@ -11,7 +11,7 @@ function Home() {
     min-h-screen bg-gray-300 dark:bg-gray-900 sm:items-center sm:pt-0"
     >
       <div className="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        {user ? (
+        {auth ? (
           <NavLink
             to="/dashboard"
             className="ml-4 text-sm text-gray-700 underline"
