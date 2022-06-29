@@ -14,9 +14,9 @@ const GuestLayout = ({ logo, children, loading }) => {
                 {logo}
               </span>
             </div>
-            <div className="flex-1 text-gray-500 dark:text-gray-400 font-semibold text-sm">
-              <span className="cursor-pointer px-5">
-                <NavLink to="/">Iniciar Sesión</NavLink>
+            <div className="flex text-gray-500 dark:text-gray-400 font-semibold text-sm">
+              <span className="cursor-pointer px-2">
+                <p>Modo oscuro</p>
               </span>
 
               <span title="Change Mode" className="cursor-pointer md:px-5">

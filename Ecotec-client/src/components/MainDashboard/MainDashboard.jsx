@@ -2,36 +2,38 @@ import useAuth from 'hooks/useAuth';
 import React from 'react';
 import './MainDashboard.css';
 
-export default function MainDashboard() {
+export default function MainDashboard({ users }) {
   const { auth } = useAuth();
 
+  console.log(users);
+
   return (
-    <div class="flex flex-wrap">
-      <div class="w-full lg:w-8/12 bg-gray-800 py-6 px-6 rounded-3xl">
-        <div class="flex justify-between text-white items-center mb-8">
-          <p class="text-2xl font-bold">
+    <div className="flex flex-wrap">
+      <div className="w-full lg:w-8/12 bg-gradient-to-b from-gray-800 to-[#052436] py-6 px-6 rounded-3xl">
+        <div className="flex justify-between text-white items-center mb-8">
+          <p className="text-2xl font-bold">
             Bienvenido {''}
             {auth?.user.first_name} {auth?.user.last_name}
           </p>
-          <p class="">December, 12</p>
+          <p className="">December, 12</p>
         </div>
-        <div class="flex flex-wrap justify-between items-center pb-8">
-          <div class="flex flex-wrap text-white">
-            <div class="pr-10">
-              <div class="text-2xl font-bold">45</div>
-              <div class="">In Progress</div>
+        <div className="flex flex-wrap justify-between items-center pb-8">
+          <div className="flex flex-wrap text-white">
+            <div className="pr-10">
+              <div className="text-2xl font-bold">45</div>
+              <div className="">In Progress</div>
             </div>
-            <div class="pr-10">
-              <div class="text-2xl font-bold">24</div>
-              <div class="">Upcoming</div>
+            <div className="pr-10">
+              <div className="text-2xl font-bold">24</div>
+              <div className="">Upcoming</div>
             </div>
             <div>
-              <div class="text-2xl font-bold">62</div>
-              <div class="">Total Projects</div>
+              <div className="text-2xl font-bold">62</div>
+              <div className="">Total Projects</div>
             </div>
           </div>
-          <div class="flex items-center mt-4 md:mt-0">
-            <button class="text-white bg-transparent" title="List View">
+          <div className="flex items-center mt-4 md:mt-0">
+            <button className="text-white bg-transparent" title="List View">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -39,9 +41,9 @@ export default function MainDashboard() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <line x1="8" y1="6" x2="21" y2="6"></line>
                 <line x1="8" y1="12" x2="21" y2="12"></line>
@@ -51,7 +53,10 @@ export default function MainDashboard() {
                 <line x1="3" y1="18" x2="3.01" y2="18"></line>
               </svg>
             </button>
-            <button class="text-white bg-gray-700 p-2 ml-2" title="Grid View">
+            <button
+              className="text-white bg-gray-700 p-2 ml-2"
+              title="Grid View"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -59,9 +64,9 @@ export default function MainDashboard() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
@@ -71,40 +76,42 @@ export default function MainDashboard() {
             </button>
           </div>
         </div>
-        <div class="flex flex-wrap">
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
               <div
-                class="p-4 rounded-3xl"
+                className="p-4 rounded-3xl"
                 style={{ backgroundColor: 'rgb(254, 228, 203)' }}
               >
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-yellow-700 w-6/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-yellow-700 w-6/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">60%</p>
+                  <p className="text-right m-0 text-sm font-bold">60%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant1"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant2"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -112,52 +119,54 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-yellow-600">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-yellow-600">
                     2 Days Left
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
-              <div class="p-4 rounded-3xl bg-gray-300">
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
+              <div className="p-4 rounded-3xl bg-gray-300">
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-indigo-700 w-5/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-indigo-700 w-5/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">50%</p>
+                  <p className="text-right m-0 text-sm font-bold">50%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant3"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant4"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -165,52 +174,54 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-indigo-700">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-indigo-700">
                     2 Days Left
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
-              <div class="p-4 rounded-3xl bg-green-200">
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
+              <div className="p-4 rounded-3xl bg-green-200">
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-green-700 w-7/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-green-700 w-7/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">70%</p>
+                  <p className="text-right m-0 text-sm font-bold">70%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant5"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant6"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -218,52 +229,54 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-green-700">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-green-700">
                     2 Days Left
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
-              <div class="p-4 rounded-3xl bg-blue-200">
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
+              <div className="p-4 rounded-3xl bg-blue-200">
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-blue-700 w-7/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-blue-700 w-7/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">70%</p>
+                  <p className="text-right m-0 text-sm font-bold">70%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant7"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant8"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -271,52 +284,54 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-blue-700">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-blue-700">
                     2 Days Left
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
-              <div class="p-4 rounded-3xl bg-red-200">
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
+              <div className="p-4 rounded-3xl bg-red-200">
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-red-700 w-7/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-red-700 w-7/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">70%</p>
+                  <p className="text-right m-0 text-sm font-bold">70%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant9"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant10"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -324,52 +339,54 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-red-700">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-red-700">
                     2 Days Left
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/12">
-            <div class="p-2">
-              <div class="p-4 rounded-3xl bg-purple-200">
-                <div class="flex items-center justify-b">
-                  <span class="text-sm">December 10, 2020</span>
+          <div className="w-full md:w-4/12">
+            <div className="p-2">
+              <div className="p-4 rounded-3xl bg-purple-200">
+                <div className="flex items-center justify-b">
+                  <span className="text-sm">December 10, 2020</span>
                 </div>
-                <div class="text-center mb-4 mt-5">
-                  <p class="text-base font-bold opacity-70">Web Designing</p>
-                  <p class="text-sm opacity-70 mt-2">Prototyping</p>
+                <div className="text-center mb-4 mt-5">
+                  <p className="text-base font-bold opacity-70">
+                    Web Designing
+                  </p>
+                  <p className="text-sm opacity-70 mt-2">Prototyping</p>
                 </div>
                 <div>
-                  <p class="text-sm font-bold m-0">Progress</p>
-                  <div class="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
-                    <span class="block h-1 rounded-md bg-purple-700 w-7/12"></span>
+                  <p className="text-sm font-bold m-0">Progress</p>
+                  <div className="w-full h-1 rounded-md overflow-hidden bg-white my-2 mx-0">
+                    <span className="block h-1 rounded-md bg-purple-700 w-7/12"></span>
                   </div>
-                  <p class="text-right m-0 text-sm font-bold">70%</p>
+                  <p className="text-right m-0 text-sm font-bold">70%</p>
                 </div>
-                <div class="flex justify-between pt-4 relative">
-                  <div class="flex items-center">
+                <div className="flex justify-between pt-4 relative">
+                  <div className="flex items-center">
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                       alt="participant11"
                     />
                     <img
-                      class="w-5 h-5 rounded-full overflow-hidden object-cover"
+                      className="w-5 h-5 rounded-full overflow-hidden object-cover"
                       src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
                       alt="participant12"
                     />
-                    <button class="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
+                    <button className="w-5 h-5 rounded-full border-none ml-3 p-0 flex justify-center items-center bg-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -377,16 +394,16 @@ export default function MainDashboard() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus"
                       >
                         <path d="M12 5v14M5 12h14"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-purple-700">
+                  <div className="text-sm rounded-lg flex flex-shrink-0 py-2 px-4 font-bold text-purple-700">
                     2 Days Left
                   </div>
                 </div>
@@ -395,22 +412,28 @@ export default function MainDashboard() {
           </div>
         </div>
       </div>
-      <div class="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
-        <div class="bg-gray-800 rounded-3xl px-6 pt-6">
-          <div class="flex text-white text-2xl pb-6 font-bold">
+      <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
+        <div className="bg-gradient-to-b from-gray-800 to-[#052436] rounded-3xl px-6 pt-6">
+          <div className="flex text-white text-2xl pb-6 font-bold">
             <p>Client Messages</p>
           </div>
-          <div>
-            <div class="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700"
+            >
               <img
                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
                 alt="profile image"
-                class="object-cover w-10 h-10 rounded-full"
+                className="object-cover w-10 h-10 rounded-full"
               />
-              <div class="pl-4 w-full">
-                <div class="flex items-center justify-between w-full">
-                  <div class="text-white font-medium">Stephanie</div>
-                  <div class="flex justify-center items-center cursor-pointer h-7 w-7">
+              <div className="pl-4 w-full">
+                <div className="flex items-center justify-between w-full">
+                  <div className="text-white font-medium">
+                    {user.first_name} {user.last_name}
+                  </div>
+                  <div className="flex justify-center items-center cursor-pointer h-7 w-7">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -418,121 +441,23 @@ export default function MainDashboard() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-white"
                     >
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                   </div>
                 </div>
-                <p class="my-2 text-sm text-gray-400">
+                <p className="my-2 text-sm text-gray-400">
                   I got your first assignment. It was quite good. 🥳 We can
                   continue with the next assignment.
                 </p>
-                <p class="text-right text-gray-400 text-sm">Dec, 12</p>
+                <p className="text-right text-gray-400 text-sm">Dec, 12</p>
               </div>
             </div>
-            <div class="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-              <img
-                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80"
-                alt="profile image2"
-                class="object-cover w-10 h-10 rounded-full"
-              />
-              <div class="pl-4 w-full">
-                <div class="flex items-center justify-between w-full">
-                  <div class="text-white font-medium">Mark</div>
-                  <div class="flex justify-center items-center cursor-pointer h-7 w-7">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-white"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                </div>
-                <p class="my-2 text-sm text-gray-400">
-                  Hey, can tell me about progress of project? I'm waiting for
-                  your response.
-                </p>
-                <p class="text-right text-gray-400 text-sm">Dec, 12</p>
-              </div>
-            </div>
-            <div class="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-              <img
-                src="https://images.unsplash.com/photo-1543965170-4c01a586684e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDZ8fG1hbnxlbnwwfDB8MHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
-                alt="profile image"
-                class="object-cover w-10 h-10 rounded-full"
-              />
-              <div class="pl-4 w-full">
-                <div class="flex items-center justify-between w-full">
-                  <div class="text-white font-medium">David</div>
-                  <div class="flex justify-center items-center cursor-pointer h-7 w-7">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-white"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                </div>
-                <p class="my-2 text-sm text-gray-400">
-                  Hey, can tell me about progress of project? I'm waiting for
-                  your response.
-                </p>
-                <p class="text-right text-gray-400 text-sm">Dec, 12</p>
-              </div>
-            </div>
-            <div class="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-              <img
-                src="https://images.unsplash.com/photo-1533993192821-2cce3a8267d1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwbW9kZXJufGVufDB8fDB8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
-                alt="profile image3"
-                class="object-cover w-10 h-10 rounded-full"
-              />
-              <div class="pl-4 w-full">
-                <div class="flex items-center justify-between w-full">
-                  <div class="text-white font-medium">Mark</div>
-                  <div class="flex justify-center items-center cursor-pointer h-7 w-7">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-white"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                </div>
-                <p class="my-2 text-sm text-gray-400">
-                  I am really impressed! Can't wait to see the final result.
-                </p>
-                <p class="text-right text-gray-400 text-sm">Dec, 12</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

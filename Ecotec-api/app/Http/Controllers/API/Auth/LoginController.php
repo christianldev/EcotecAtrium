@@ -40,7 +40,7 @@ class LoginController extends Controller
         }
 
         if(!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Crednciales invalidas'], 401);
         }
 
         $role = auth()->user()->roles->first()->name;

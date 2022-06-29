@@ -15,27 +15,27 @@ const Navigation = ({ auth }) => {
 
   return (
     <nav className="bg-gray-900 h-20 items-center relative z-10">
-      <div class="flex flex-center flex-col h-full justify-center mx-auto relative px-3 text-white z-10">
-        <div class="flex items-center pl-4 relative w-full sm:ml-0 sm:pr-2 lg:max-w-68">
-          <div class="flex group h-full items-center relative w-12">
+      <div className="flex flex-center flex-col h-full justify-center mx-auto relative px-3 text-white z-10">
+        <div className="flex items-center pl-4 relative w-full sm:ml-0 sm:pr-2 lg:max-w-68">
+          <div className="flex group h-full items-center relative w-12">
             <button
               type="button"
               aria-expanded="false"
               aria-label="Toggle sidenav"
-              class="text-4xl text-white focus:outline-none"
+              className="text-4xl text-white focus:outline-none"
             >
               ≡
             </button>
           </div>
-          <div class="container flex left-0 relative w-3/4">
-            <div class="group hidden items-center ml-8 relative w-full md:flex lg:w-72">
-              <div class="absolute cursor-pointer flex items-center justify-center h-10 p-3 pr-2 text-gray-500 text-sm uppercase w-auto sm:hidden">
+          <div className="container flex left-0 relative w-3/4">
+            <div className="group hidden items-center ml-8 relative w-full md:flex lg:w-72">
+              <div className="absolute cursor-pointer flex items-center justify-center h-10 p-3 pr-2 text-gray-500 text-sm uppercase w-auto sm:hidden">
                 <svg
                   fill="none"
-                  class="h-5 relative w-5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  className="h-5 relative w-5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -43,7 +43,7 @@ const Navigation = ({ auth }) => {
                 </svg>
               </div>
               <svg
-                class="absolute fill-current h-4 hidden left-0 ml-4 pointer-events-none text-gray-500 w-4 group-hover:text-gray-400 sm:block"
+                className="absolute fill-current h-4 hidden left-0 ml-4 pointer-events-none text-gray-500 w-4 group-hover:text-gray-400 sm:block"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
@@ -51,65 +51,65 @@ const Navigation = ({ auth }) => {
               </svg>
               <input
                 type="text"
-                class="bg-gray-800 block leading-normal pl-10 py-1.5 pr-4 ring-opacity-90 rounded-2xl text-gray-400 w-full focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-gray-800 block leading-normal pl-10 py-1.5 pr-4 ring-opacity-90 rounded-2xl text-gray-400 w-full focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Search"
               />
             </div>
           </div>
-          <div class="flex items-center justify-end ml-5 p-1 relative w-full sm:mr-0 sm:right-auto">
-            <a href="#" class="block pr-5">
+          <div className="flex items-center justify-end ml-5 p-1 relative w-full sm:mr-0 sm:right-auto">
+            <a href="#" className="block pr-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
                 ></path>
               </svg>
             </a>
-            <a href="#" class="block pr-5">
+            <a href="#" className="block pr-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
             </a>
-            <a href="#" class="block pr-5 relative">
+            <a href="#" className="block pr-5 relative">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-slate-500 dark:text-navy-100"
+                className="h-6 w-6 text-slate-500 dark:text-navy-100"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 24 24"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M15.375 17.556h-6.75m6.75 0H21l-1.58-1.562a2.254 2.254 0 01-.67-1.596v-3.51a6.612 6.612 0 00-1.238-3.85 6.744 6.744 0 00-3.262-2.437v-.379c0-.59-.237-1.154-.659-1.571A2.265 2.265 0 0012 2c-.597 0-1.169.234-1.591.65a2.208 2.208 0 00-.659 1.572v.38c-2.621.915-4.5 3.385-4.5 6.287v3.51c0 .598-.24 1.172-.67 1.595L3 17.556h12.375zm0 0v1.11c0 .885-.356 1.733-.989 2.358A3.397 3.397 0 0112 22a3.397 3.397 0 01-2.386-.976 3.313 3.313 0 01-.989-2.357v-1.111h6.75z"
                 ></path>
               </svg>
-              <span class="absolute -top-2 right-4 flex h-3 w-3 items-center justify-center">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-600 opacity-80"></span>
-                <span class="inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
+              <span className="absolute -top-2 right-4 flex h-3 w-3 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-600 opacity-80"></span>
+                <span className="inline-flex h-2 w-2 rounded-full bg-indigo-600"></span>
               </span>
             </a>
-            <a href="#" class="block relative">
+            <a href="#" className="block relative">
               <Dropdown
                 align="right"
                 width="48"
@@ -117,22 +117,22 @@ const Navigation = ({ auth }) => {
                   <img
                     alt="Maurice Lokumba"
                     src="	https://lineone.piniastudio.com/images/avatar/avatar-12.jpg"
-                    class="h-10 mx-auto object-cover rounded-full w-10"
+                    className="h-10 mx-auto object-cover rounded-full w-10"
                   />
                 }
               >
                 <DropdownButton onClick={logout}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
                       d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                     ></path>
                   </svg>
@@ -180,7 +180,9 @@ const Navigation = ({ auth }) => {
             </div>
             <div className="mt-3 space-y-1">
               {/* Authentication */}
-              <ResponsiveNavButton onClick={logout}>Logout</ResponsiveNavButton>
+              <ResponsiveNavButton onClick={logout}>
+                Cerrar sesion
+              </ResponsiveNavButton>
             </div>
           </div>
         </div>

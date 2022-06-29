@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([{}]);
+  const [users, setUsers] = useState([]);
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,9 +24,8 @@ const Dashboard = () => {
         });
 
         if (response.status === 200) {
-          const { data: usersData } = response;
           if (isMounted) {
-            setUsers(usersData.data);
+            setUsers(response.data);
           }
         }
       } catch (err) {
@@ -65,7 +64,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div> */}
-      <MainDashboard />
+      <MainDashboard users={users} />
     </AppLayout>
   );
 };

@@ -19,7 +19,7 @@ code {
 
 
 .dark.bg-gradient {
-  background: rgb(39, 42, 55);
+  background: rgba(5, 36, 54, 1);
   background: linear-gradient(
     60deg,
     rgb(39, 42, 55, 1) 5%,

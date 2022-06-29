@@ -8,17 +8,15 @@ import Input from 'components/Input';
 import Label from 'components/Label';
 import useAuth from 'hooks/useAuth';
 import { useState } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { FaRegEye, FaRegEyeSlash, FaEnvelope } from 'react-icons/fa';
 import axios from 'utils/axios';
 import jwtDecode from 'jwt-decode';
+import { setToken } from 'utils/token';
 
 const Login = () => {
   const { login, setRoles } = useAuth();
 
-  const location = useLocation();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,8 +27,6 @@ const Login = () => {
   // active style
   const [active, setActive] = useState(false);
 
-  const redirect = location.state?.path || '/admin';
-
   const submitForm = async (event) => {
     event.preventDefault();
     try {
@@ -39,15 +35,17 @@ const Login = () => {
         password,
       });
 
-      if (response.data.access_token) {
+      if (response.status === 200) {
         const token = response.data.access_token;
         const decodedToken = jwtDecode(token);
         const roles = decodedToken.user.role;
-        login(response.data.access_token);
+        setToken(token);
+        login(decodedToken);
         setRoles([roles]);
-        navigate(redirect, { replace: true });
+      } else if (response.data.status === 401 || response.data.status === 403) {
+        setErrors(response.error);
       } else {
-        setErrors(response.data.errors);
+        setErrors(response.data.status);
       }
     } catch (error) {
       console.log(error);
@@ -57,9 +55,9 @@ const Login = () => {
   return (
     <GuestLayout
       logo={
-        <Link to="/">
+        <a href="/">
           <ApplicationLogo className="w-48 h-18 fill-current text-gray-500" />
-        </Link>
+        </a>
       }
       loading={loading}
     >
@@ -155,12 +153,12 @@ const Login = () => {
         {/* Remember Me */}
         <div className="flex mt-4 col-span-2">
           <label htmlFor="remember_me" className="block">
-            <NavLink
-              to="/forgot-password"
+            <a
+              href="/forgot-password"
               className="underline flex justify-end items-end text-sm text-gray-400 hover:text-blue-500"
             >
               Contraseña olvidada?
-            </NavLink>
+            </a>
           </label>
         </div>
 

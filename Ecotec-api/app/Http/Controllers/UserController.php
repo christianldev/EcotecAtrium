@@ -13,10 +13,7 @@ class UserController extends Controller
     try{
       $users = User::all();
       if(count($users) > 0){
-        return response()->json([
-          'status' => 'success',
-          'data' => $users
-        ], 200);
+        return $users;
       }else{
         return response()->json([
           'status' => 'error',

@@ -1,42 +1,57 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Dashboard from 'pages/dashboard';
 import Login from 'pages/login';
-import Register from 'pages/register';
-import Home from 'pages/home';
-import ForgotPassword from 'pages/forgot-password';
-import PasswordReset from 'pages/password-reset';
-import NotFoundPage from 'pages/404';
-import AuthProvider from 'auth/AuthProvider';
-import RequireAuth from 'auth/RequireAuth';
-
-const ROLES = {
-  Student: 'student',
-  Teacher: 'teacher',
-  Admin: 'admin',
-};
+import useAuth from 'hooks/useAuth';
+import Navigation from 'routes/Navigation';
+import AuthContext from 'context/AuthContext';
+import { useEffect, useMemo, useState } from 'react';
+import { decodeToken, getToken, removeToken } from 'utils/token';
 
 function App() {
+  const [auth, setAuth] = useState(undefined);
+  const [error, setError] = useState('');
+  const [roles, setRoles] = useState([]);
+
+  useEffect(() => {
+    const token = getToken();
+
+    if (!token) {
+      setAuth(null);
+      setRoles([]);
+    } else {
+      setAuth(decodeToken(token));
+      setRoles([decodeToken(token).user.role]);
+    }
+  }, []);
+
+  const logout = () => {
+    removeToken();
+    setAuth(null);
+  };
+
+  const login = (user) => {
+    setAuth(user);
+  };
+
+  const authData = useMemo(
+    () => ({
+      auth,
+      login,
+      logout,
+      error,
+      setError,
+      roles,
+      setRoles,
+    }),
+    [auth, roles],
+  );
+
+  if (auth === undefined) return null;
+
   return (
     <div className="antialiased">
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Login />} />
-
-          <Route
-            path="/admin"
-            element={
-              <RequireAuth allowedRoles={[ROLES.Admin]}>
-                <Dashboard />
-              </RequireAuth>
-            }
-          />
-
-          <Route path="/invaliduser" element={<NotFoundPage />} />
-          <Route path="/unauthorised" element={<NotFoundPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </AuthProvider>
+      <AuthContext.Provider value={authData}>
+        {!auth ? <Login /> : <Navigation />}
+      </AuthContext.Provider>
     </div>
   );
 }

@@ -22,8 +22,8 @@ export const DropdownButton = ({ children, ...props }) => (
   <Menu.Item>
     {({ active }) => (
       <button
-        className={`w-full gap-3 flex px-4 py-2 
-        text-sm leading-2  text-gray-200 ${active ? 'bg-gray-100' : ''}
+        className={`w-full gap-3 flex px-2 py-2 
+        text-sm leading-2  text-gray-500 ${active ? 'bg-gray-100' : ''}
          focus:outline-none transition duration-150 ease-in-out`}
         {...props}
       >

@@ -8,7 +8,7 @@ function RequireAuth({ children, allowedRoles }) {
   const location = useLocation();
   const { auth, roles } = useAuth();
 
-  console.log('ROLES', roles);
+  console.log(roles);
 
   if (auth === null) {
     return <Navigate to="/" state={{ path: location.pathname }} replace />;
