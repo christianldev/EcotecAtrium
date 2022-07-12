@@ -1,4 +1,4 @@
-import logo from '../images/logo_light.png';
+import logo from '../assets/images/ecotec.png';
 
 const ApplicationLogo = (props) => <img src={logo} alt={logo} {...props} />;
 

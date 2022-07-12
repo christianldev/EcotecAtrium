@@ -17,6 +17,12 @@ function App() {
     if (!token) {
       setAuth(null);
       setRoles([]);
+    }
+    //if token expired
+    else if (decodeToken(token).exp < Date.now() / 1000) {
+      removeToken();
+      setAuth(null);
+      setRoles([]);
     } else {
       setAuth(decodeToken(token));
       setRoles([decodeToken(token).user.role]);

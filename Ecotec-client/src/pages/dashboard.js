@@ -43,27 +43,8 @@ const Dashboard = () => {
 
   return (
     <AppLayout>
-      <SwitcherDarkMode />
-      {/* <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 bg-white border-b border-gray-200">
-              Usuarios
-            </div>
-            {users?.length ? (
-              <ul className="p-4">
-                {users.map((user, i) => (
-                  <li key={i}>
-                    {user?.first_name} {user?.last_name}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No users to display</p>
-            )}
-          </div>
-        </div>
-      </div> */}
+      {/* <SwitcherDarkMode /> */}
+
       <MainDashboard users={users} />
     </AppLayout>
   );

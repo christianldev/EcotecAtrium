@@ -1,24 +1,35 @@
 import useAuth from 'hooks/useAuth';
+import { useState } from 'react';
 import Navigation from './Navigation';
 import { Sidebar } from './Sidebar';
 
 const AppLayout = ({ children }) => {
   const { auth } = useAuth();
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
-    <div className="bg-gray-900 h-screen overflow-hidden relative ">
-      <Sidebar />
+    <>
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-      <div className="flex flex-col h-screen pl-0 w-full lg:pl-20 lg:space-y-4">
-        <Navigation />
-        {/* Sidebar */}
+      <Navigation />
+      {/* Sidebar */}
 
-        {/* Page Content */}
-        <main className="h-screen overflow-auto pb-36 pt-4 px-2 md:pb-8 md:pt-4 lg:pt-0 lg:px-4">
-          {children}
-        </main>
-      </div>
-    </div>
+      {/* Page Content */}
+      <section className="px-0 py-20 md:px-6 xl:max-w-7xl xl:mx-16">
+        {children}
+      </section>
+
+      {openSidebar && (
+        <div
+          onClick={() => {
+            setOpenSidebar(false);
+          }}
+          class="flex items-center flex-col justify-center overflow-hidden fixed inset-0 z-40"
+        >
+          <div class="absolute inset-0 bg-gradient-to-tr opacity-90 dark:from-gray-700 dark:via-gray-900 dark:to-gray-700 from-blue-50 via-blue-200 to-blue-50"></div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -56,7 +56,7 @@ const Login = () => {
     <GuestLayout
       logo={
         <a href="/">
-          <ApplicationLogo className="w-48 h-18 fill-current text-gray-500" />
+          <ApplicationLogo className="w-24 h-auto fill-current text-gray-500" />
         </a>
       }
       loading={loading}
