@@ -9,7 +9,7 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
       id="nav"
       className="fixed top-0 inset-x-0 bg-gray-50 dark:bg-slate-800 h-14 z-30 w-screen transition-position lg:transition-none lg:w-auto"
     >
-      <div className="lg:px-6 xl:max-w-7xl xl:mx-auto flex lg:items-stretch">
+      <div className="lg:px-4 xl:max-w-7xl  xl:mx-auto flex justify-center items-center">
         <div className="flex-1 items-stretch flex h-14">
           <div className="flex lg:hidden items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3">
             <span className="inline-flex justify-center items-center w-6 h-6">
@@ -26,6 +26,20 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
               </svg>
             </span>
           </div>
+
+          <ol class="flex flex-wrap pt-4 mr-12 bg-transparent rounded-lg xl:ml-16 sm:mr-16 lg:ml-20">
+            <li class="leading-normal text-base">
+              <a class="opacity-50 text-slate-700" href="javascript:;">
+                Pages
+              </a>
+            </li>
+            <li
+              class="text-size-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+              aria-current="page"
+            >
+              Dashboard
+            </li>
+          </ol>
 
           <div className="flex-none items-stretch flex h-14 lg:hidden">
             <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3">

@@ -21,7 +21,7 @@ const AppLayout = ({ children }) => {
       {/* Page Content */}
       <section
         onClick={() => setOpenDropDownMenu(false)}
-        className="px-0 py-20 md:px-6 xl:max-w-7xl xl:ml-20"
+        className="px-0 py-20 md:px-6 xl:max-w-7xl xl:ml-20 lg:ml-24"
       >
         {children}
       </section>
