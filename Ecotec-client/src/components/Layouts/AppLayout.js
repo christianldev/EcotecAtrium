@@ -6,16 +6,23 @@ import { Sidebar } from './Sidebar';
 const AppLayout = ({ children }) => {
   const { auth } = useAuth();
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [openDropdownMenu, setOpenDropDownMenu] = useState(false);
 
   return (
     <>
       <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-      <Navigation />
+      <Navigation
+        setOpenDropDownMenu={setOpenDropDownMenu}
+        openDropdownMenu={openDropdownMenu}
+      />
       {/* Sidebar */}
 
       {/* Page Content */}
-      <section className="px-0 py-20 md:px-6 xl:max-w-7xl xl:mx-16">
+      <section
+        onClick={() => setOpenDropDownMenu(false)}
+        className="px-0 py-20 md:px-6 xl:max-w-7xl xl:ml-20"
+      >
         {children}
       </section>
 

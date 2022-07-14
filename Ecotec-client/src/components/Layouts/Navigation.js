@@ -1,9 +1,8 @@
 import useAuth from 'hooks/useAuth';
 import { useState } from 'react';
 
-const Navigation = ({ auth }) => {
-  const { logout } = useAuth();
-  const [open, setOpen] = useState(false);
+const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
+  const { logout, auth } = useAuth();
 
   return (
     <nav
@@ -149,7 +148,7 @@ const Navigation = ({ auth }) => {
               <div className="block items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black lg:flex p-0 lg:py-2 lg:px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 dropdown">
                 <button
                   onClick={() => {
-                    setOpen(!open);
+                    setOpenDropDownMenu(!openDropdownMenu);
                   }}
                   className="flex items-center py-2 px-3 bg-gray-100 dark:bg-gray-800 lg:bg-transparent lg:dark:bg-transparent"
                 >
@@ -161,7 +160,9 @@ const Navigation = ({ auth }) => {
                     />
                   </div>
                   <div>
-                    <span>John Doe</span>
+                    <span>
+                      {auth.user.first_name} {auth.user.last_name}
+                    </span>
                   </div>
                   <span className="inline-flex justify-center items-center w-6 h-6 lg:inline-flex">
                     <svg
@@ -177,7 +178,7 @@ const Navigation = ({ auth }) => {
                     </svg>
                   </span>
                 </button>
-                {open && (
+                {openDropdownMenu && (
                   <div className="text-sm border-gray-100 border-b lg:border-b-0 lg:border-gray-200 lg:bg-gray-50 lg:absolute lg:top-full lg:left-0 lg:min-w-full lg:z-20 lg:shadow lg:rounded-b lg:dark:bg-slate-800dark:border-slate-700 ">
                     <a className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3">
                       <span className="inline-flex justify-center items-center w-6 h-6 transition-colors">

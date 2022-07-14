@@ -18,7 +18,7 @@ export const Sidebar = ({ openSidebar, setOpenSidebar }) => {
             <ApplicationLogo className="w-14 h-auto fill-current text-gray-300" />
           </div>
         </div>
-        <div className=" flex-1 overflow-y-auto overflow-x-hidden">
+        <div className=" flex-1  overflow-x-hidden scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-500 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           <ul>
             <li>
               <NavLink

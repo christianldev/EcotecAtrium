@@ -5,8 +5,6 @@ import './MainDashboard.css';
 export default function MainDashboard({ users }) {
   const { auth } = useAuth();
 
-  console.log(users);
-
   return (
     <>
       <section className="px-6 sm:px-0 mb-6 flex items-center justify-between">
@@ -35,7 +33,7 @@ export default function MainDashboard({ users }) {
       </section>
       <div className="grid grid-cols-12 gap-6 mb-6">
         <div className="col-span-12 sm:col-span-6 xl:col-span-3">
-          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-white mx-6 md:mx-0">
+          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-gray-100 mx-6 md:mx-0 shadow-xl">
             <div className="p-6">
               <div className="justify-between items-center flex mb-3">
                 <div className="flex shrink-1 grow-9 items-center justify-center">
@@ -112,7 +110,7 @@ export default function MainDashboard({ users }) {
           </div>
         </div>
         <div className="col-span-12 sm:col-span-6 xl:col-span-3">
-          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-white mx-6 md:mx-0">
+          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-gray-100 mx-6 md:mx-0 shadow-xl">
             <div className="p-6">
               <div className="justify-between items-center flex mb-3">
                 <div className="flex shrink-1 grow-9 items-center justify-center">
@@ -189,7 +187,7 @@ export default function MainDashboard({ users }) {
           </div>
         </div>
         <div className="col-span-12 sm:col-span-6 xl:col-span-3">
-          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-white mx-6 md:mx-0">
+          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-gray-100 mx-6 md:mx-0 shadow-xl">
             <div className="p-6">
               <div className="justify-between items-center flex mb-3">
                 <div className="flex shrink-1 grow-9 items-center justify-center">
@@ -266,7 +264,7 @@ export default function MainDashboard({ users }) {
           </div>
         </div>
         <div className="col-span-12 sm:col-span-6 xl:col-span-3">
-          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-white mx-6 md:mx-0">
+          <div className="md:rounded-xl dark:bg-slate-900/70 block bg-gray-100 mx-6 md:mx-0 shadow-xl">
             <div className="p-6">
               <div className="justify-between items-center flex mb-3">
                 <div className="flex shrink-1 grow-9 items-center justify-center">
