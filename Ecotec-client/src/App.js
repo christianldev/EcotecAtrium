@@ -54,7 +54,7 @@ function App() {
   if (auth === undefined) return null;
 
   return (
-    <div className="antialiased">
+    <div className="antialiased ">
       <AuthContext.Provider value={authData}>
         {!auth ? <Login /> : <Navigation />}
       </AuthContext.Provider>

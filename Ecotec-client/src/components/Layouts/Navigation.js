@@ -1,5 +1,10 @@
 import useAuth from 'hooks/useAuth';
-import { useState } from 'react';
+import {
+  RiNotification3Fill,
+  RiSunFoggyFill,
+  RiLogoutCircleRFill,
+  RiQuestionnaireFill,
+} from 'react-icons/ri';
 
 const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
   const { logout, auth } = useAuth();
@@ -27,14 +32,14 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
             </span>
           </div>
 
-          <ol class="flex flex-wrap pt-4 mr-12 bg-transparent rounded-lg xl:ml-16 sm:mr-16 lg:ml-20">
-            <li class="leading-normal text-base">
-              <a class="opacity-50 text-slate-700" href="javascript:;">
+          <ol className="flex flex-wrap pt-4 mr-12 bg-transparent rounded-lg xl:ml-16 sm:mr-16 lg:ml-20">
+            <li className="leading-normal text-base">
+              <a className="opacity-50 text-slate-700" href="#">
                 Pages
               </a>
             </li>
             <li
-              class="text-size-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+              className="text-size-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
               aria-current="page"
             >
               Dashboard
@@ -58,7 +63,7 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
                 <div className="w-2.5 h-2.5 rounded-full absolute top-0 right-0 bg-yellow-500 border-yellow-500 text-white"></div>
               </span>
             </div>
-            <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3">
+            <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-gray-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3">
               <span className="inline-flex justify-center items-center w-6 h-6">
                 <svg
                   viewBox="0 0 24 24"
@@ -76,7 +81,7 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
           </div>
           <div className="absolute w-screen top-14 left-0 bg-gray-50 shadow lg:w-auto lg:items-stretch lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none dark:bg-slate-800 hidden">
             <div className="max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto">
-              <div className="block items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black lg:flex p-0 lg:py-2 lg:px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 dropdown">
+              <div className="block items-center grow-0 shrink-0 relative cursor-pointer text-gray-600 dark:text-white dark:hover:text-gray-400 hover:text-black lg:flex p-0 lg:py-2 lg:px-3 ">
                 <a className="flex items-center py-2 px-3 bg-gray-100 dark:bg-gray-800 lg:bg-transparent lg:dark:bg-transparent">
                   <span className="inline-flex justify-center items-center w-6 h-6 transition-colors">
                     <svg
@@ -159,7 +164,7 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
                 </div>
               </div>
 
-              <div className="block items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black lg:flex p-0 lg:py-2 lg:px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 dropdown">
+              <div className="block items-center grow-0 shrink-0 relative cursor-pointer text-gray-600 dark:text-white dark:hover:text-gray-400 hover:text-black lg:flex p-0 lg:py-2 lg:px-3 ">
                 <button
                   onClick={() => {
                     setOpenDropDownMenu(!openDropdownMenu);
@@ -265,78 +270,22 @@ const Navigation = ({ setOpenDropDownMenu, openDropdownMenu }) => {
                   </div>
                 )}
               </div>
-              <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 lg:w-16 lg:justify-center">
-                <span className="inline-flex justify-center items-center w-6 h-6 transition-colors">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    className="inline-block"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2M19.07,3.5L20.5,4.93L4.93,20.5L3.5,19.07L19.07,3.5M12.89,5.93L11.41,5L9.97,6L10.39,4.3L9,3.24L10.75,3.12L11.33,1.47L12,3.1L13.73,3.13L12.38,4.26L12.89,5.93M9.59,9.54L8.43,8.81L7.31,9.59L7.65,8.27L6.56,7.44L7.92,7.35L8.37,6.06L8.88,7.33L10.24,7.36L9.19,8.23L9.59,9.54M19,13.5A5.5,5.5 0 0,1 13.5,19C12.28,19 11.15,18.6 10.24,17.93L17.93,10.24C18.6,11.15 19,12.28 19,13.5M14.6,20.08L17.37,18.93L17.13,22.28L14.6,20.08M18.93,17.38L20.08,14.61L22.28,17.15L18.93,17.38M20.08,12.42L18.94,9.64L22.28,9.88L20.08,12.42M9.63,18.93L12.4,20.08L9.87,22.27L9.63,18.93Z"
-                    ></path>
-                  </svg>
+              <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-gray-600 dark:text-white dark:hover:text-gray-400 hover:text-blue-600 py-2 px-3  lg:dark:border-slate-900 lg:w-16 lg:justify-center">
+                <span className="bg-indigo-100 text-blue-500 ml-auto w-8 h-8 flex items-center justify-center rounded">
+                  <RiSunFoggyFill className="inline-block h-5 w-5" />
                 </span>
                 <span className="px-2 transition-colors lg:hidden">
                   Light/Dark
                 </span>
               </div>
-              <a
-                className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 lg:w-16 lg:justify-center"
-                href="https://justboil.me/tailwind-admin-templates/vue-dashboard/"
-              >
-                <span className="inline-flex justify-center items-center w-6 h-6 transition-colors">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    className="inline-block"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z"
-                    ></path>
-                  </svg>
-                </span>
-                <span className="px-2 transition-colors lg:hidden">About</span>
-              </a>
-              <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3 lg:border-r border-gray-100 lg:dark:border-slate-900 lg:w-16 lg:justify-center">
-                <span className="inline-flex justify-center items-center w-6 h-6 relative transition-colors">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    className="inline-block"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"
-                    ></path>
-                  </svg>
-                  <div className="w-2.5 h-2.5 rounded-full absolute top-0 right-0 bg-yellow-500 border-yellow-500 text-white"></div>
+
+              <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-gray-600 dark:text-white dark:hover:text-gray-400 hover:text-blue-600 py-2 px-3  lg:dark:border-slate-900 lg:w-16 lg:justify-center  ">
+                <span className="bg-indigo-100 text-blue-500 ml-auto w-8 h-8 flex items-center justify-center rounded">
+                  <RiNotification3Fill className="inline-block" />
+                  <div className="w-2 h-2 rounded-full absolute top-4 right-4 bg-green-500 border-green-500 text-white"></div>
                 </span>
                 <span className="px-2 transition-colors lg:hidden">
                   Updates
-                </span>
-              </div>
-              <div className="flex items-center grow-0 shrink-0 relative cursor-pointer text-blue-600 dark:text-white dark:hover:text-gray-400 hover:text-black py-2 px-3 lg:w-16 lg:justify-center">
-                <span className="inline-flex justify-center items-center w-6 h-6 transition-colors">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    className="inline-block"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"
-                    ></path>
-                  </svg>
-                </span>
-                <span className="px-2 transition-colors lg:hidden">
-                  Log out
                 </span>
               </div>
             </div>
