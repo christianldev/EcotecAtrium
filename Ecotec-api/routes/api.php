@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\CourseController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/users', [UserController::class, 'getUsersList']);
-});
 
+
+Route::controller(CourseController::class)->middleware("jwt.verify")->group(function () {
+      // Courses
+      Route::get('courses/student/{student_id}', 'getStudentCourses');
+      Route::post('course/create', 'store');
+      Route::post('course/update/{course_id}', 'update');
+
+});
 
 require __DIR__.'/auth.php';

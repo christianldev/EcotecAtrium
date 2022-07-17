@@ -195,6 +195,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        App\Providers\SchoolSessionServiceProvider::class,
+        App\Providers\SemesterServiceProvider::class,
+        App\Providers\AcademicSettingServiceProvider::class,
+        App\Providers\SchoolClassServiceProvider::class,
+        App\Providers\SectionServiceProvider::class,
+        App\Providers\CourseServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\PurifySetupProvider::class,
     ],
 
     /*
