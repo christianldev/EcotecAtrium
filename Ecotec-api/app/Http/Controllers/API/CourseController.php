@@ -27,6 +27,11 @@ class CourseController extends Controller
     public function __construct(SchoolSessionRepository $schoolSessionRepository, CourseInterface $schoolCourseRepository) {
         $this->schoolSessionRepository = $schoolSessionRepository;
         $this->schoolCourseRepository = $schoolCourseRepository;
+        $this->middleware('permission:course-list|course-create|course-edit|course-delete', ['only' => ['getStudentCourses']]);
+        $this->middleware('permission:course-create', ['only' => ['store']]);
+        $this->middleware('permission:course-edit', ['only' => ['update']]);
+        $this->middleware('permission:course-delete', ['only' => ['destroy']]);
+   
     }
 
     /**
@@ -39,15 +44,7 @@ class CourseController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -73,18 +70,24 @@ class CourseController extends Controller
      */
     public function getStudentCourses($student_id) {
         $current_school_session_id = $this->getSchoolCurrentSession();
+        echo $current_school_session_id;
         $promotionRepository = new PromotionRepository();
         $class_info = $promotionRepository->getPromotionInfoById($current_school_session_id, $student_id);
-
-        $courses = $this->schoolCourseRepository->getByClassId($class_info->class_id);
         
-
-        $data = [
-            'class_info'    => $class_info,
-            'courses'       => $courses,
-        ];
+        if ($class_info) {
+            $courses = $this->schoolCourseRepository->getByClassId($class_info->class_id);
+            $data = [
+                'class_info'    => $class_info,
+                'courses'       => $courses,
+            ];
+            
+            return $data;
+            
+        }
         
-        return $data;
+        return response()->json(['error' => 'No se encontró ningún curso'], 404);
+
+       
     }
 
     /**

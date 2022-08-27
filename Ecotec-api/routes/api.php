@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,13 +22,36 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+// Admin API Routes
 
-Route::controller(CourseController::class)->middleware("jwt.verify")->group(function () {
+Route::controller(CourseController::class)->middleware(["jwt.verify", "role:admin"])->group(function () {
+    
       // Courses
       Route::get('courses/student/{student_id}', 'getStudentCourses');
       Route::post('course/create', 'store');
       Route::post('course/update/{course_id}', 'update');
 
 });
+
+Route::controller(UserController::class)->middleware(["jwt.verify", "role:admin|student|teacher"])->group(function () {
+    
+      // Users
+      Route::get('users', 'getUsersList');
+      Route::get('users/students', 'getStudentsList');
+      Route::get('users/{user_id}', 'getUser');
+      Route::post('user/create', 'createUser');
+      Route::post('user/update/{user_id}', 'update');
+      Route::post('user/delete/{user_id}', 'delete');
+
+});
+
+//Student API Routes
+Route::controller(CourseController::class)->middleware(["jwt.verify", "role:student"])->group(function () {
+    
+      // Courses
+      Route::get('courses/student/{student_id}', 'getStudentCourses');
+
+});
+
 
 require __DIR__.'/auth.php';

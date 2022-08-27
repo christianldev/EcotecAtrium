@@ -9,6 +9,12 @@ use Spatie\Permission\PermissionRegistrar;
 class PermissionSeeder extends Seeder
 {
 
+    public function __construct(PermissionRegistrar $permissionRegistrar)
+    {
+        $this->permissionRegistrar = $permissionRegistrar;
+    }
+    
+
     /**
      * Run the database seeds.
      *
@@ -22,14 +28,19 @@ class PermissionSeeder extends Seeder
         // create permissions
 
         $permissions = [
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
             'create school sessions',
             'update browse by session',
             'create semesters',
             'edit semesters',
             'assign teachers',
-            'create courses',
-            'view courses',
-            'edit courses',
+            'course-list',
+            'course-create',
+            'course-edit',
+            'course-delete',
             'create classes',
             'view classes',
             'edit classes',

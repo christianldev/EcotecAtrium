@@ -20,7 +20,7 @@ const routes = [
   {
     index: true,
     element: (
-      <RequireAuth allowedRoles={[ROLES.Admin, ROLES.Teacher]}>
+      <RequireAuth allowedRoles={[ROLES.Admin, ROLES.Student]}>
         <Dashboard />
       </RequireAuth>
     ),

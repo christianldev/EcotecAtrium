@@ -8,6 +8,7 @@ use App\Interfaces\CourseInterface;
 
 class CourseRepository implements CourseInterface
 {
+
     public function create($request)
     {
 
@@ -34,13 +35,9 @@ class CourseRepository implements CourseInterface
 
     public function getByClassId($class_id)
     {
-        $course = Course::where('class_id', $class_id)->get();
+       return Course::where('class_id', $class_id)->get();
 
-        if ($course) {
-            return $course;
-        } else {
-            return response()->json(['error' => 'No se encontró ningún curso'], 404);
-        }
+
     }
 
     public function findById($course_id)
