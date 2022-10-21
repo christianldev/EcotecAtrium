@@ -56,8 +56,6 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
-
     'asset_url' => env('ASSET_URL'),
 
     /*
@@ -197,6 +195,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        App\Providers\SchoolSessionServiceProvider::class,
+        App\Providers\SemesterServiceProvider::class,
+        App\Providers\AcademicSettingServiceProvider::class,
+        App\Providers\SchoolClassServiceProvider::class,
+        App\Providers\SectionServiceProvider::class,
+        App\Providers\CourseServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\PurifySetupProvider::class,
     ],
 
     /*
