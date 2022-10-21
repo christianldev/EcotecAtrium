@@ -123,6 +123,7 @@ class LoginController extends Controller
        $reponse = $reponse->get();
 
         return response()->json([
+            'user' => $user,
             'access_token' => $reponse,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
