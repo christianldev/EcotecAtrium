@@ -11,7 +11,7 @@ export default function useModalForm() {
 
 
 
-  const handlerModal = (type) => {
+  const handlerModal = (type: string) => {
     switch (type) {
       case 'avatar':
         setTitleModal('Editar foto de perfil');
