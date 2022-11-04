@@ -125,13 +125,776 @@ export default function SidebarLayout({
 				className={
 					sidebarOpen
 						? 'hidden transition ease-in duration-1000'
-						: 'overflow-x-hidden hidden md:flex md:flex-shrink-0 border-r dark:border-r-0  shadow-md dark:shadow-lg'
+						: 'overflow-x-hidden hidden md:flex md:flex-shrink-0  shadow-md dark:shadow-lg'
 				}>
-				<div className="flex flex-col w-64">
+				<nav className="side-nav">
+					<Logo className="router-link-active intro-x flex items-center pl-2 pt-4 mx-auto h-8 w-auto" />
+					{/* <span className="hidden xl:block text-white text-lg ml-3">
+							{' '}
+							Rubick{' '}
+						</span> */}
+
+					<div className="side-nav__devider my-6"></div>
+					<ul>
+						<li>
+							<a
+								href="javascript:;"
+								className="side-menu side-menu--active side-menu--open">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+										<polyline points="9 22 9 12 15 12 15 22"></polyline>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Dashboard{' '}
+									<div className="side-menu__sub-icon transform rotate-180">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+							<ul>
+								<li>
+									<a href="/" className="side-menu">
+										<div className="side-menu__icon">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="lucide">
+												<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+											</svg>
+										</div>
+										<div className="side-menu__title">
+											Overview 1{' '}
+										</div>
+									</a>
+								</li>
+								<li>
+									<a
+										href="/dashboard-overview-2"
+										className="side-menu">
+										<div className="side-menu__icon">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="lucide">
+												<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+											</svg>
+										</div>
+										<div className="side-menu__title">
+											Overview 2{' '}
+										</div>
+									</a>
+								</li>
+								<li>
+									<a
+										href="/dashboard-overview-3"
+										className="side-menu side-menu--active">
+										<div className="side-menu__icon">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="lucide">
+												<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+											</svg>
+										</div>
+										<div className="side-menu__title">
+											Overview 3
+										</div>
+									</a>
+								</li>
+								<li>
+									<a
+										href="/dashboard-overview-4"
+										className="side-menu">
+										<div className="side-menu__icon">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="lucide">
+												<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+											</svg>
+										</div>
+										<div className="side-menu__title">
+											Overview 4
+										</div>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path
+											d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 
+														4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+										<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+										<line
+											x1="12"
+											y1="22.08"
+											x2="12"
+											y2="12"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Menu Layout{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+										<line
+											x1="3"
+											y1="6"
+											x2="21"
+											y2="6"></line>
+										<path d="M16 10a4 4 0 01-8 0"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									E-Commerce{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/inbox" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+										<path
+											d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 
+																	0016.76 4H7.24a2 2 0 00-1.79 1.11z"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Inbox
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/file-manager" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<line
+											x1="22"
+											y1="12"
+											x2="2"
+											y2="12"></line>
+										<path
+											d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2
+														 0 00-1.79 1.11z"></path>
+										<line
+											x1="6"
+											y1="16"
+											x2="6.01"
+											y2="16"></line>
+										<line
+											x1="10"
+											y1="16"
+											x2="10.01"
+											y2="16"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									File Manager
+								</div>
+							</a>
+						</li>
+						<li>
+							<a
+								href="/point-of-sale"
+								className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<rect
+											x="1"
+											y="4"
+											width="22"
+											height="16"
+											rx="2"
+											ry="2"></rect>
+										<line
+											x1="1"
+											y1="10"
+											x2="23"
+											y2="10"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Point of Sale
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/chat" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path
+											d="M21 
+																	 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">Chat</div>
+							</a>
+						</li>
+						<li>
+							<a href="/post" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
+										<polyline points="14 2 14 8 20 8"></polyline>
+										<line
+											x1="16"
+											y1="13"
+											x2="8"
+											y2="13"></line>
+										<line
+											x1="16"
+											y1="17"
+											x2="8"
+											y2="17"></line>
+										<line
+											x1="10"
+											y1="9"
+											x2="8"
+											y2="9"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">Post</div>
+							</a>
+						</li>
+						<li>
+							<a href="/calendar" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<rect
+											x="3"
+											y="4"
+											width="18"
+											height="18"
+											rx="2"
+											ry="2"></rect>
+										<line
+											x1="16"
+											y1="2"
+											x2="16"
+											y2="6"></line>
+										<line
+											x1="8"
+											y1="2"
+											x2="8"
+											y2="6"></line>
+										<line
+											x1="3"
+											y1="10"
+											x2="21"
+											y2="10"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Calendar
+								</div>
+							</a>
+						</li>
+						<li className="side-nav__devider my-6"></li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path>
+										<path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Crud{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+										<circle cx="9" cy="7" r="4"></circle>
+										<path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+										<path d="M16 3.13a4 4 0 010 7.75"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Users
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<rect
+											x="3"
+											y="3"
+											width="18"
+											height="18"
+											rx="2"
+											ry="2"></rect>
+										<rect
+											x="7"
+											y="7"
+											width="3"
+											height="9"></rect>
+										<rect
+											x="14"
+											y="7"
+											width="3"
+											height="5"></rect>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Profile{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<rect
+											x="3"
+											y="3"
+											width="18"
+											height="18"
+											rx="2"
+											ry="2"></rect>
+										<line
+											x1="3"
+											y1="9"
+											x2="21"
+											y2="9"></line>
+										<line
+											x1="9"
+											y1="21"
+											x2="9"
+											y2="9"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Pages
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li className="side-nav__devider my-6"></li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+										<path
+											d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0
+														 0016.76 4H7.24a2 2 0 00-1.79 1.11z"></path>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Components{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<rect
+											x="3"
+											y="3"
+											width="18"
+											height="18"
+											rx="2"
+											ry="2"></rect>
+										<line
+											x1="9"
+											y1="3"
+											x2="9"
+											y2="21"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Forms
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" className="side-menu">
+								<div className="side-menu__icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="lucide">
+										<line
+											x1="22"
+											y1="12"
+											x2="2"
+											y2="12"></line>
+										<path
+											d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 
+														2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"></path>
+										<line
+											x1="6"
+											y1="16"
+											x2="6.01"
+											y2="16"></line>
+										<line
+											x1="10"
+											y1="16"
+											x2="10.01"
+											y2="16"></line>
+									</svg>
+								</div>
+								<div className="side-menu__title">
+									Widgets{' '}
+									<div className="side-menu__sub-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="lucide">
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				{/* <div className="flex flex-col w-64">
 					<div className="flex flex-col h-0 flex-1 shadow-lg bg-theme-600">
 						<div className="flex-1 flex flex-col overflow-y-auto">
 							<nav className="flex-1 px-2 py-4 space-y-3 bg-white dark:bg-gray-900 select-none">
-								{/* <TenantSelector className="text-xs sm:text-sm" onAdd={onAddTenant} /> */}
+								{/* <TenantSelector className="text-xs sm:text-sm" onAdd={onAddTenant} /> 
 								<div className=" text-center">
 									<div className="relative">
 										<h2 className="text-2xl font-semibold text-gray-200 px-4 max-h-9 overflow-hidden hidden-compact">
@@ -146,7 +909,7 @@ export default function SidebarLayout({
 												/>
 											</Link>
 
-											{/* <!-- <img className="inline-block w-7 h-auto -mt-1" src="src/img/logo.png"> --> */}
+										
 										</h2>
 									</div>
 								</div>
@@ -161,12 +924,31 @@ export default function SidebarLayout({
 							</nav>
 						</div>
 					</div>
-				</div>
+
+
+				</div> */}
 			</div>
 
 			{/*Content */}
 			<div className="content">
 				<div className="top-bar">
+					<button
+						className="px-4  text-gray-600"
+						aria-label="Open sidebar"
+						onClick={() => setSidebarOpen(!sidebarOpen)}>
+						<svg
+							className="h-5 w-5"
+							stroke="currentColor"
+							fill="none"
+							viewBox="0 0 24 24">
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M4 6h16M4 12h16M4 18h7"
+							/>
+						</svg>
+					</button>
 					<nav
 						aria-label="breadcrumb"
 						className="-intro-x mr-auto hidden sm:flex">
@@ -426,78 +1208,7 @@ export default function SidebarLayout({
 
 					<ProfileButton />
 				</div>
-				{/* <div className="relative flex-shrink-0 flex h-14 bg-white shadow-inner border-b border-gray-200">
-          <button
-            className="px-4  text-gray-600 focus:outline-none focus:bg-gray-100 focus:text-gray-600"
-            aria-label="Open sidebar"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            <svg className="h-5 w-5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
-          </button>
-
-          <div className="flex-1 px-3 flex justify-between">
-            <div className="flex-1 flex items-center">
-              <div className="w-full flex md:ml-0">
-                <div className="align-baseline w-full text-slate-200 pl-1">
-                  <form className="hidden sm:inline-block md:hidden lg:inline-block mx-5">
-                    <div
-                      className="bg-white items-center justify-between w-full flex rounded-full p-2 sticky"
-                      style={{ top: '5px' }}
-                    >
-                      <div>
-                        <div className="p-2 mr-1 rounded-full hover:bg-gray-100 cursor-pointer">
-                          <svg
-                            className="h-6 w-6 text-gray-500"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                              clipRule="evenodd"
-                            ></path>
-                          </svg>
-                        </div>
-                      </div>
-
-                      <input
-                        className="font-bold uppercase rounded-full w-full pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs"
-                        type="text"
-                        placeholder="Search"
-                      />
-
-                      <div className="bg-blue-500 p-2 hover:bg-blue-600 cursor-pointer mx-2 rounded-full">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center items-center md:ml-6 space-x-1">
-              <div
-                className="block py-3 px-4  text-sm rounded-full focus:outline-none"
-                aria-controls="mobile-canvas"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Customizer</span>
-
-                <DarkModeToggle />
-              </div>
+				{/* 		
               {layout === 'admin' && <LayoutSelector className="text-sm" />}
               {layout === 'admin' && <LocaleSelector className="text-sm" />}
               {layout === 'app' && <PendingInvitationsButton />}
@@ -505,9 +1216,7 @@ export default function SidebarLayout({
               {layout === 'app' && <QuickActionsButton />}
               <NotificationButton />
               <ProfileButton />
-            </div>
-          </div>
-        </div> */}
+         */}
 
 				<main
 					ref={mainElement}
