@@ -96,7 +96,7 @@ export default function ProfileButton() {
 
 										<span
 											title="online"
-											className="flex justify-start absolute ml-4 -bottom-1 text-center bg-green-500 border border-white w-3 h-3 rounded-full"></span>
+											className="flex justify-start absolute ml-5 -bottom-1 text-center bg-green-500 border border-white w-3 h-3 rounded-full"></span>
 									</div>
 								</div>
 							);

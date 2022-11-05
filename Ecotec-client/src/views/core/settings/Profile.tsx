@@ -30,7 +30,35 @@ import {useSelector} from 'react-redux';
 import UserUtils from '@/utils/store/UserUtils';
 import {useNavigate} from 'react-router-dom';
 import {Helmet, HelmetProvider} from 'react-helmet-async';
-import bg_profile from '@/assets/img/bg_profile.jpg';
+
+import ChangePasswordForm from '@/components/front/forms/ChangePasswordForm';
+
+const tabItems = [
+	{
+		id: 1,
+		title: 'Profile',
+		icon: 'fas fa-user',
+		content: 'profile',
+	},
+	{
+		id: 2,
+		title: 'Account',
+		icon: 'fas fa-user-cog',
+		content: 'account',
+	},
+	{
+		id: 3,
+		title: 'Change Password',
+		icon: 'fas fa-key',
+		content: <ChangePasswordForm />,
+	},
+	{
+		id: 4,
+		title: 'Settings',
+		icon: 'fas fa-cog',
+		content: 'settings',
+	},
+];
 
 export default function Profile() {
 	const {t} = useTranslation();
@@ -68,6 +96,7 @@ export default function Profile() {
 		useState<string>('');
 	const [passwordConfirm, setPasswordConfirm] =
 		useState<string>('');
+	const [tabSelected, setTabSelected] = useState(1);
 
 	function canChangePassword() {
 		return loginType === UserLoginType.PASSWORD;
@@ -187,7 +216,7 @@ export default function Profile() {
 	});
 
 	return (
-		<div className="py-4 space-y-2 mx-auto max-w-5xl xl:max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div className="intro-y box px-5 pt-5 mt-5">
 			{/*Profile */}
 			<HelmetProvider>
 				<Helmet>
@@ -198,220 +227,177 @@ export default function Profile() {
 				</Helmet>
 			</HelmetProvider>
 			<div>
-				<div className="w-full mx-auto">
-					<div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-8">
-						<div className="group h-40 overflow-hidden relative">
-							<img src={bg_profile} className="w-full" />
-
-							<div className="absolute top-4 ltr:right-4 rtl:left-4">
-								<button
-									type="button"
-									className="group-hover:opacity-80 opacity-0 py-1.5 px-3 inline-block text-center mb-3 rounded leading-5 text-gray-800 bg-gray-200 border border-gray-200 hover:text-gray-900 hover:bg-gray-300 hover:ring-0 hover:border-gray-300 focus:bg-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0">
-									Edit cover{' '}
+				{/*Profile Info */}
+				<div className="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
+					<div className="flex flex-1 px-5 items-center justify-center lg:justify-start">
+						<div className="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+							{avatar ? (
+								<img
+									alt="Midone Tailwind HTML Admin Template"
+									className="rounded-full"
+									src={avatar}
+								/>
+							) : (
+								<div className="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
 									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										fill="currentColor"
-										className="inline-block bi bi-camera"
-										viewBox="0 0 16 16">
-										<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"></path>
-										<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"></path>
-									</svg>
-								</button>
-							</div>
-						</div>
-						<div className="flex justify-center -mt-10 relative">
-							<a className="z-30 group" href="javascript:;">
-								{avatar ? (
-									<img
-										src={avatar}
-										className="rounded-full w-24 h-24 bg-gray-200 border-solid border-white border-2 -mt-3"
-									/>
-								) : (
-									<svg
-										className="h-20 w-20 rounded-full border border-gray-700 bg-gray-500"
+										className="rounded-full bg-gray-400"
 										fill="currentColor"
 										viewBox="0 0 24 24">
 										<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
 									</svg>
-								)}
-								<div
-									title="Change avatar"
-									className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-white dark:text-gray-900">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										fill="currentColor"
-										className="w-6 h-6 bi bi-camera"
-										viewBox="0 0 16 16">
-										<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"></path>
-										<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"></path>
-									</svg>
 								</div>
-							</a>
+							)}
 						</div>
-						<div className="text-center px-3 pb-6 pt-2">
-							<h3 className="text-gray-800 dark:text-gray-100 font-bold text-lg">
-								{firstName} {lastName}
-							</h3>
-							<p className="mt-2 text-gray-400">
-								Hello, i'm professional front end developer!
-							</p>
+
+						<div className="ml-5">
+							<div className="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
+								John Travolta
+							</div>
+							<div className="text-slate-500">
+								DevOps Engineer
+							</div>
 						</div>
-						<div className="flex justify-center pb-6">
-							<div className="text-center px-2.5">
-								<p className="text-gray-500">14</p>
-								<span className="text-gray-400">
-									Projects
-								</span>
+					</div>
+					<div
+						className="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 
+		border-t lg:border-t-0 pt-5 lg:pt-0">
+						<div className="font-medium text-center lg:text-left lg:mt-3">
+							Contact Details{' '}
+						</div>
+						<div className="flex flex-col justify-center items-center lg:items-start mt-4">
+							<div className="truncate sm:whitespace-normal flex items-center">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									className="lucide w-4 h-4 mr-2">
+									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+									<polyline points="22,6 12,13 2,6"></polyline>
+								</svg>{' '}
+								johntravolta@left4code.com
 							</div>
-							<div className="text-center px-2.5">
-								<p className="text-gray-500">12</p>
-								<span className="text-gray-400">Team</span>
+							<div className="truncate sm:whitespace-normal flex items-center mt-3">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									className="lucide w-4 h-4 mr-2">
+									<rect
+										x="2"
+										y="2"
+										width="20"
+										height="20"
+										rx="5"
+										ry="5"></rect>
+									<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+									<line
+										x1="17.5"
+										y1="6.5"
+										x2="17.51"
+										y2="6.5"></line>
+								</svg>{' '}
+								Instagram John Travolta
 							</div>
-							<div className="text-center px-2.5">
-								<p className="text-gray-500">221</p>
-								<span className="text-gray-400">Tasks</span>
+							<div className="truncate sm:whitespace-normal flex items-center mt-3">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									className="lucide w-4 h-4 mr-2">
+									<path
+										d="M23 3a10.9 10.9 0 
+							01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 
+							01-7 2c9 5 20 0 20-11.5 0-.28-.03-.56-.08-.83A7.72 7.72 0 0023 3z"></path>
+								</svg>{' '}
+								Twitter John Travolta
 							</div>
+						</div>
+					</div>
+					<div
+						className="mt-6 lg:mt-0 flex-1 
+							flex items-center justify-center px-5 border-t lg:border-0 border-slate-200/60 
+							dark:border-darkmode-400 pt-5 lg:pt-0">
+						<div className="text-center rounded-md w-20 py-3">
+							<div className="font-medium text-primary text-xl">
+								201
+							</div>
+							<div className="text-slate-500">Orders</div>
+						</div>
+						<div
+							className="text-center rounded-md 
+					w-20 py-3">
+							<div className="font-medium text-primary text-xl">
+								1k
+							</div>
+							<div className="text-slate-500">
+								Purchases
+							</div>
+						</div>
+						<div
+							className="text-center rounded-md 
+					w-20 py-3">
+							<div className="font-medium text-primary text-xl">
+								492
+							</div>
+							<div className="text-slate-500">Reviews</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="md:grid lg:grid-cols-3 md:gap-2">
-					<div className="md:col-span-1">
-						<div className="sm:px-0">
-							<h3 className="text-lg font-medium leading-6 text-gray-900">
-								{t('settings.profile.profileTitle')}
-							</h3>
-							<p className="mt-1 text-xs leading-5 text-gray-600">
-								{t('settings.profile.profileText')}
-							</p>
-						</div>
-					</div>
-					<div className="mt-5 md:mt-0 md:col-span-2">
-						<form onSubmit={updateProfile}>
-							<div className="shadow overflow-hidden sm:rounded-sm">
-								<div className="px-4 py-5 bg-white sm:p-6">
-									<div className="grid grid-cols-6 gap-2">
-										<div className="col-span-6 sm:col-span-6 md:col-span-6">
-											<label
-												htmlFor="email_address"
-												className="block text-sm font-medium leading-5 text-gray-700">
-												{t('account.shared.email')}
-											</label>
-											<input
-												value={email}
-												required
-												disabled={true}
-												type="email"
-												id="email_address"
-												className="bg-gray-100 mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-											/>
-										</div>
-										<div className="col-span-6 md:col-span-3">
-											<label
-												htmlFor="firstName"
-												className="block text-sm font-medium leading-5 text-gray-700">
-												{t('settings.profile.firstName')}
-											</label>
-											<input
-												id="firstName"
-												required
-												value={firstName}
-												onChange={(e) =>
-													setFirstName(e.target.value)
-												}
-												className="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-											/>
-										</div>
+				{/* Profile tabs */}
 
-										<div className="col-span-6 md:col-span-3">
-											<label
-												htmlFor="lastName"
-												className="block text-sm font-medium leading-5 text-gray-700">
-												{t('settings.profile.lastName')}
-											</label>
-											<input
-												value={lastName}
-												onChange={(e) =>
-													setLastName(e.target.value)
-												}
-												id="lastName"
-												className="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-											/>
-										</div>
+				<ul
+					className="nav nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
+					role="tablist">
+					{tabItems.map((item) => (
+						<li
+							key={item.id}
+							className="nav-item "
+							role="presentation">
+							<button
+								onClick={() => setTabSelected(item.id)}
+								className={`nav-link py-4 flex items-center cursor-pointer ${
+									tabSelected === item.id ? 'active' : ''
+								}`}
+								type="button"
+								role="tab"
+								data-tw-target="#_mns7deevj"
+								aria-controls="_mns7deevj"
+								aria-selected={
+									tabSelected === item.id ? 'true' : 'false'
+								}>
+								<i
+									className={`lucide w-4 h-4 mr-2 ${item.icon}`}></i>{' '}
+								{item.title}
+							</button>
+						</li>
+					))}
+				</ul>
 
-										<div className="col-span-6 sm:col-span-6">
-											<label
-												htmlFor="avatar"
-												className="block text-sm leading-5 font-medium text-gray-700">
-												{t('shared.avatar')}
-											</label>
-											<div className="mt-2 flex items-center space-x-3">
-												<div className="h-12 w-12 rounded-md overflow-hidden bg-gray-100">
-													{(() => {
-														if (avatar) {
-															return (
-																<img
-																	id="avatar"
-																	alt="Avatar"
-																	src={avatar}
-																/>
-															);
-														} else {
-															return (
-																<svg
-																	id="avatar"
-																	className="h-full w-full text-gray-300"
-																	fill="currentColor"
-																	viewBox="0 0 24 24">
-																	<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-																</svg>
-															);
-														}
-													})()}
-												</div>
-
-												<ButtonTertiary
-													onClick={() =>
-														setShowUploadImage(true)
-													}
-													type="button">
-													{t('shared.upload')}
-												</ButtonTertiary>
-												{avatar && (
-													<ButtonTertiary
-														destructive={true}
-														onClick={() =>
-															loadedImage(null)
-														}
-														type="button">
-														{t('shared.delete')}
-													</ButtonTertiary>
-												)}
-											</div>
-										</div>
-									</div>
-								</div>
-								<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-									<button
-										type="submit"
-										className="inline-flex space-x-2 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-theme-600 hover:bg-theme-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-500">
-										{t('shared.save')}
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				{/*Separator */}
-				<div className="block">
-					<div className="py-5">
-						<div className="border-t border-gray-200"></div>
-					</div>
+				{/*Profile options */}
+				<div className="md:grid lg:grid-cols-3 md:gap-2 tab-content w-full mt-5 shadow-lg">
+					{tabItems.map(
+						(item) =>
+							tabSelected === item.id && item.content
+					)}
 				</div>
 
 				{/*Security */}
@@ -531,13 +517,6 @@ export default function Profile() {
 					</div>
 				</div>
 
-				{/*Separator */}
-				<div className="block">
-					<div className="py-5">
-						<div className="border-t border-gray-200"></div>
-					</div>
-				</div>
-
 				{/*Preferences */}
 				<div className="md:grid lg:grid-cols-3 md:gap-2">
 					<div className="md:col-span-1">
@@ -584,12 +563,7 @@ export default function Profile() {
 						</form>
 					</div>
 				</div>
-				{/*Separator */}
-				<div className="block">
-					<div className="py-5">
-						<div className="border-t border-gray-200"></div>
-					</div>
-				</div>
+
 				{/*Danger */}
 				<div className="md:grid lg:grid-cols-3 md:gap-2">
 					<div className="md:col-span-1">

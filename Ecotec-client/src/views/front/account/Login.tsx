@@ -52,7 +52,7 @@ export default function Login() {
 				</Helmet>
 			</HelmetProvider>
 			<main>
-				<div className="py-8 md:py-12 bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
+				<div className="py-8 md:py-12 bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40 rounded-lg">
 					<div className="container mx-auto px-4 xl:max-w-6xl">
 						<div className="flex flex-wrap -mx-4 flex-row">
 							<div className="flex-shrink max-w-full px-4 w-full lg:w-1/2">

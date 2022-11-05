@@ -127,8 +127,11 @@ export default function SidebarLayout({
 						? 'hidden transition ease-in duration-1000'
 						: 'overflow-x-hidden hidden md:flex md:flex-shrink-0  shadow-md dark:shadow-lg'
 				}>
-				<nav className="side-nav">
-					<Logo className="router-link-active intro-x flex items-center pl-2 pt-4 mx-auto h-8 w-auto" />
+				<nav className="side-nav dark:bg-darkmode-800">
+					<Logo
+						layout="dashboard"
+						className="router-link-active intro-x flex items-center pl-2 pt-4 mx-auto h-8 w-auto"
+					/>
 					{/* <span className="hidden xl:block text-white text-lg ml-3">
 							{' '}
 							Rubick{' '}
@@ -890,50 +893,13 @@ export default function SidebarLayout({
 						</li>
 					</ul>
 				</nav>
-				{/* <div className="flex flex-col w-64">
-					<div className="flex flex-col h-0 flex-1 shadow-lg bg-theme-600">
-						<div className="flex-1 flex flex-col overflow-y-auto">
-							<nav className="flex-1 px-2 py-4 space-y-3 bg-white dark:bg-gray-900 select-none">
-								{/* <TenantSelector className="text-xs sm:text-sm" onAdd={onAddTenant} /> 
-								<div className=" text-center">
-									<div className="relative">
-										<h2 className="text-2xl font-semibold text-gray-200 px-4 max-h-9 overflow-hidden hidden-compact">
-											<Logo className="mx-auto h-12 w-auto" />
-										</h2>
-										<h2 className="text-3xl font-semibold mx-auto logo-compact hidden">
-											<Link to="/app">
-												<img
-													alt="Logo"
-													className="hidden sm:block h-7 sm:h-8 w-auto"
-													src={LogoLight}
-												/>
-											</Link>
-
-										
-										</h2>
-									</div>
-								</div>
-								{layout === 'app' && (
-									<WorkspaceSelector
-										className="text-xs sm:text-sm"
-										onAdd={() => setSidebarOpen(false)}
-										onSelected={() => setSidebarOpen(false)}
-									/>
-								)}
-								<SidebarMenu layout={layout} />
-							</nav>
-						</div>
-					</div>
-
-
-				</div> */}
 			</div>
 
 			{/*Content */}
 			<div className="content">
 				<div className="top-bar">
 					<button
-						className="px-4  text-gray-600"
+						className="px-4  text-gray-600 dark:text-gray-400"
 						aria-label="Open sidebar"
 						onClick={() => setSidebarOpen(!sidebarOpen)}>
 						<svg
@@ -1218,13 +1184,10 @@ export default function SidebarLayout({
               <ProfileButton />
          */}
 
-				<main
-					ref={mainElement}
-					className="flex-1 focus:outline-none overflow-y-auto bg-gray-50"
-					tabIndex={0}>
+				<main ref={mainElement} tabIndex={0}>
 					<div
 						key={currentWorkspaceId}
-						className="pb-20 sm:pb-0">
+						className="relative">
 						{children}
 					</div>
 				</main>

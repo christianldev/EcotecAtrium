@@ -9,11 +9,13 @@ import {Link} from 'react-router-dom';
 interface Props {
 	className?: string;
 	size?: string;
+	layout?: string;
 }
 
 export default function Logo({
 	className = '',
 	size = 'h-10',
+	layout = '',
 }: Props) {
 	const theme = useSelector<RootState>(
 		(state) => state.theme.value
@@ -33,7 +35,11 @@ export default function Logo({
 					return (
 						<img
 							className={classNames(size, 'w-auto mx-auto')}
-							src={LogoDark}
+							src={
+								layout === 'dashboard'
+									? LogoDark
+									: LogoLight
+							}
 							alt="Logo"
 						/>
 					);
