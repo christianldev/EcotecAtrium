@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom';
 import {Transition} from '@headlessui/react';
 import {Fragment, ReactNode, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
@@ -6,15 +5,9 @@ import {RootState} from '@/store';
 import TenantSelector from './selectors/TenantSelector';
 import WorkspaceSelector from './selectors/WorkspaceSelector';
 import SidebarMenu from './SidebarMenu';
-import LayoutSelector from '../ui/selectors/LayoutSelector';
-import LocaleSelector from '../ui/selectors/LocaleSelector';
-import ChatSupportButton from './buttons/ChatSupportButton';
-import PendingInvitationsButton from './buttons/PendingInvitationsButton';
+
 import ProfileButton from './buttons/ProfileButton';
-import QuickActionsButton from './buttons/QuickActionsButton';
-import LogoLight from '@/assets/img/logo-light.png';
-import IconLight from '@/assets/img/icon-light.png';
-import NotificationButton from './buttons/NotificationButton';
+
 import Logo from '../front/Logo';
 import DarkModeToggle from '../ui/toggles/DarkModeToggle';
 

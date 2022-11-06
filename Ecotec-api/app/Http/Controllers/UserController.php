@@ -10,7 +10,14 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
-
+  // public function __construct( )
+  // {
+  //   $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['getUsersList', 'getStudentsList', 'getUser']]);
+  //   $this->middleware('permission:user-create', ['only' => ['createUser']]);
+  //   $this->middleware('permission:user-edit', ['only' => ['update']]);
+  //   $this->middleware('permission:user-delete', ['only' => ['delete']]);
+  // }
+  
   public function getUsersList(){
     try{
       $users = User::paginate(5);

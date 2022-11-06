@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 // Admin API Routes
 
-Route::controller(CourseController::class)->middleware(["jwt.verify", "role:admin"])->group(function () {
+Route::controller(CourseController::class)->middleware(["jwt.verify", "role:admin|student"])->group(function () {
     
       // Courses
       Route::get('courses/student/{student_id}', 'getStudentCourses');
@@ -33,7 +33,7 @@ Route::controller(CourseController::class)->middleware(["jwt.verify", "role:admi
 
 });
 
-Route::controller(UserController::class)->middleware(["jwt.verify", "role:admin|student|teacher"])->group(function () {
+Route::controller(UserController::class)->middleware(["jwt.verify", "role:admin"])->group(function () {
     
       // Users
       Route::get('users', 'getUsersList');
