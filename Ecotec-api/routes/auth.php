@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group([
+Route::prefix('auth')->group(function () {
+    Route::post('/admin-register', [RegisterController::class, 'adminRegister'])->name('admin-register');
+    Route::post('/admin-login', [LoginController::class, 'adminLogin'])->name('admin-login');
 
-    'middleware' => 'guest',
 
-], function () {
-    Route::post('login', [LoginController::class, 'login']);
+    // Manager authentication
+    // Route::post('/manager-register', [ApiAuthController::class, 'managerRegister'])->name('manager-register');
+    Route::post('/teacher-login', [LoginController::class, 'teacherLogin'])->name('teacher-login');
+
+
+    //Students authentication
+    // Route::post('/user-register', [ApiAuthController::class, 'userRegister'])->name('user-register');
+    Route::post('/student-login', [LoginController::class, 'studentLogin'])->name('student-login');
+    Route::post('/student-register', [RegisterController::class, 'studentRegister'])->name('student-register');
 });
-
-Route::controller(LoginController::class)->middleware("jwt.verify")->group(function () {
-    Route::get('refresh', 'refresh');
-    Route::post('logout', 'logout');
-    Route::get('profile', 'userProfile');
-});
-
-Route::post('register', [RegisterController::class, 'register'])->middleware("auth:api");

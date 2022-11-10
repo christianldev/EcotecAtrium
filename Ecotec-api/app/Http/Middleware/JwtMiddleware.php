@@ -5,10 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
-use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Support\Facades\Auth;
+
 
 class JwtMiddleware
 {
@@ -21,17 +19,20 @@ class JwtMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         try {
-            $user = JWTAuth::parseToken()->authenticate();
-            } catch (TokenExpiredException $e) {
-            return response()->json(['error' => 'token expirado'], 401);
-            } catch (TokenInvalidException $e) {
-            return response()->json(['error' => 'token invalido'], 401);
-            } catch (JWTException $e) {
-            return response()->json(['error' => 'token no encontrado'], 401);
-            } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+
+            if (Auth::guard('admin-api')->user()) {
+                return $next($request);
+            } else if (Auth::guard('student-api')->user()) {
+                return $next($request);
+            } else if (Auth::guard('teacher-api')->user()) {
+                return $next($request);
+            } else {
+                return response()->json(['error' => 'Unauthorized'], 401);
             }
-            return $next($request);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 }

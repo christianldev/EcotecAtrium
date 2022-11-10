@@ -13,7 +13,7 @@ class PermissionSeeder extends Seeder
     {
         $this->permissionRegistrar = $permissionRegistrar;
     }
-    
+
 
     /**
      * Run the database seeds.
@@ -32,6 +32,10 @@ class PermissionSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+            'leave-list',
+            'leave-create',
+            'leave-edit',
+            'leave-delete',
             'create school sessions',
             'update browse by session',
             'create semesters',
@@ -66,7 +70,7 @@ class PermissionSeeder extends Seeder
             'promote students',
             'update attendances type',
             'view attendances',
-            'take attendances',//Teacher only
+            'take attendances', //Teacher only
             'create grading systems',
             'view grading systems',
             'edit grading systems',
@@ -93,7 +97,5 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
-
-     
     }
 }

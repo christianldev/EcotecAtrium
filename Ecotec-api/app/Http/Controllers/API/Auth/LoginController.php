@@ -2,132 +2,121 @@
 
 namespace App\Http\Controllers\API\Auth;
 
-use Validator;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+
 use App\Http\Controllers\Controller;
-use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
-use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenBlacklistedException;
-use PHPOpenSourceSaver\JWTAuth\Facades\JWTFactory;
+use App\Models\Admin;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    public function __construct()
+
+    public function studentLogin(Request $request)
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
-    /**
-     * Authenticate a User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-
-    public function login(Request $request)
-    {
-
-        $credentials = $request->only('email', 'password');
-
-        $validator = Validator::make($credentials, [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
-        if( $validator->fails() ) {
-            return response()->json($validator->errors()->toJson(), 400);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        if(!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Crednciales invalidas'], 401);
-        }
-
-        $role = auth()->user()->roles->first()->name;
-
-        $user = auth()->user()->only(['uuid', 'first_name', 'last_name', 'email']);
-
-        $user['role'] = $role;
-
-    
-       
-        return $this->createNewToken( $user);
-
-    }
-
-     /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout() {
-        $token = JWTAuth::getToken();
-
-        try {
-            $token = JWTAuth::invalidate($token);
-            return response()->json([
-                'success' => true, 'message' => "Sesión cerrada correctamente"
-            ], 200);
-        } catch (JWTException $e) {
-            return response()->json([
-                'success' => false, 'message' => 'Fallo al cerrar sesión'
-            ], 422);
+        if (auth()->guard('student')->attempt([
+            'email' => request('email'),
+            'password' => request('password'),
+        ])) {
+            config(['auth.guards.api.provider' => 'student']);
+            $manager = Student::select('students.*')->find(auth()->guard('student')->user()->id);
+            $success = $manager;
+            $success['access_token'] = $manager->createToken('studentApp', ['student'])->accessToken;
+            return response()->json($success, 201);
+        } else {
+            return response()->json(['errors' => 'Correo o contraseña incorrectos'], 401);
         }
     }
-    
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh() {
-        
-        $token = JWTAuth::getToken();
-        $token = JWTAuth::refresh($token);
-        return response()->json([
-            'success' => true, 'token' => $token
-        ], 200);
 
-        
-    }
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function userProfile() {
-        try {
-            $user = JWTAuth::parseToken()->authenticate();
-            return response()->json(['success' => true, 'data' => $user], 200);
-        } catch (JWTException $e) {
-            return response()->json(['success' => false, 'data' => 'Token is invalid'], 422);
-        }
-       
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function createNewToken( $user) {
-
-        $payload = JWTFactory::sub($user['uuid'])
-        ->user($user)
-        ->make();
-      
-       $reponse = JWTAuth::encode($payload);
-       $reponse = $reponse->get();
-
-        return response()->json([
-            'user' => $user,
-            'access_token' => $reponse,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+    public function teacherLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        if (auth()->guard('teacher')->attempt([
+            'email' => request('email'),
+            'password' => request('password'),
+        ])) {
+            config(['auth.guards.api.provider' => 'teacher']);
+            $manager = Teacher::select('teachers.*')->find(auth()->guard('teacher')->user()->id);
+            $success = $manager;
+            $success['access_token'] = $manager->createToken('teacherApp', ['teacher'])->accessToken;
+            return response()->json($success, 201);
+        } else {
+            return response()->json(['errors' => 'Correo o contraseña incorrectos']);
+        }
     }
-  
+
+    public function adminLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        }
+
+
+        if (auth()->guard('admin')->attempt([
+            'email' => request('email'),
+            'password' => request('password'),
+        ])) {
+            config(['auth.guards.api.provider' => 'admin']);
+            $admin = Admin::select('admins.*')->find(auth()->guard('admin')->user()->id);
+            $success = $admin;
+            $success['access_token'] = $admin->createToken('myApp', ['admin'])->accessToken;
+            return response()->json($success, 201);
+        } else {
+            return response()->json(['errors' => 'Correo o contraseña incorrectos']);
+        }
+    }
+    /**end  */
+
+
+
+    public function userLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('Password grant token')->accessToken;
+                $response = ['token' => $token];
+                return response()->json($response, 201);
+            } else {
+                $response = ['message' => 'Invalid email or password'];
+                return response()->json($response, 422);
+            }
+        } else {
+            $message = ['message' => 'User does not exist'];
+            return response()->json($message, 422);
+        }
+    }
 }

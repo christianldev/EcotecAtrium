@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
 
-    function __construct()
-    {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index']]);
-        $this->middleware('permission:role-create', ['only' => ['store']]);
-        $this->middleware('permission:role-edit', ['only' => ['update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-    }
+
 
     /**
      * Display a listing of the resource.
@@ -23,11 +18,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('id', 'desc')->paginate(5);
-        return response()->json($roles);
+        $roles = Role::all();
+        $message = ['success' => $roles];
+        return response()->json($message, 200);
     }
 
-   
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,23 +31,20 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function createRoles(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permissions' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:roles',
+            'permission' => 'required'
         ]);
 
-        $role = Role::create([
-            'name' => $request->input('name')
-        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
 
-        $role->syncPermissions($request->input('permissions'));
-
-        return response()->json([
-            'message' => 'Role creado con éxito.',
-        ], 201);
-
+        $role = Role::create(['name' => $request->name]);
+        $role->syncPermissions($request->permission);
+        return response()->json($role, 201);
     }
 
     /**
@@ -64,7 +57,7 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name,'.$id,
+            'name' => 'required|unique:roles,name,' . $id,
             'permissions' => 'required',
         ]);
 
@@ -76,7 +69,7 @@ class RoleController extends Controller
 
         return response()->json([
             'message' => 'Role actualizado con éxito.',
-        ], 200); 
+        ], 200);
     }
 
     /**
@@ -93,5 +86,20 @@ class RoleController extends Controller
         return response()->json([
             'message' => 'Role eliminado con éxito.',
         ], 200);
+    }
+
+    public function addPermissionRoles(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        $role = Role::findOrFail($id);
+        $role->givePermissionTo($request->name);
+        return response()->json($role);
     }
 }

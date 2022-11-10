@@ -17,16 +17,13 @@ class RoleSeeder extends Seeder
     public function run()
     {
 
-        $user = \App\Models\User::factory()->create([
+        $user = \App\Models\Admin::create([
+            'username' => 'clopez',
             'email' => 'clopez@gmail.com',
-            'first_name' => 'Christian',
-            'last_name' => 'Lopez',
+            'password' => bcrypt('password'),
         ]);
- 
 
-        
-      
-        
+
         $role_admin = Role::create(['name' => 'admin']);
         $role_student = Role::create(['name' => 'student']);
         $role_teacher = Role::create(['name' => 'teacher']);
@@ -38,9 +35,5 @@ class RoleSeeder extends Seeder
         $role_teacher->syncPermissions($permissions);
 
         $user->assignRole($role_admin);
-        
-
-     
-
     }
 }
