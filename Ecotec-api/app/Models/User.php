@@ -45,7 +45,7 @@ class User extends Authenticatable
         'city',
         'zip',
         'photo',
-        'birthday',
+        'birthday' => 'date_format:Y-m-d',
         'religion',
         'blood_type',
     ];

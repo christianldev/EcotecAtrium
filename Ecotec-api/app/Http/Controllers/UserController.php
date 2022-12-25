@@ -59,22 +59,24 @@ class UserController extends Controller
 
   public function addUser(Request $request)
   {
+
+
+
+
     $validator = Validator::make($request->all(), [
       'first_name' => 'required',
       'last_name' => 'required',
       'email' => 'required|email',
+      'password' => 'required|min:6',
       'dni' => 'required',
       'gender' => 'required',
       'nationality' => 'required',
       'phone' => 'required|numeric|min:10',
       'address' => 'required',
-      'address2' => 'required',
       'city' => 'required',
       'zip' => 'required',
-      'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-      'birdthday' => 'required|date',
-      'blood_type' => 'required',
-      'religion' => 'required',
+      // 'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+      'birthday' => 'required|date_format:d-m-Y|before:today',
       'roles' => 'required'
 
     ]);
@@ -88,6 +90,7 @@ class UserController extends Controller
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
         'email' => $request->email,
+        'password' => bcrypt($request->password),
         'dni' => $request->dni,
         'gender' => $request->gender,
         'nationality' => $request->nationality,
@@ -97,10 +100,9 @@ class UserController extends Controller
         'city' => $request->city,
         'zip' => $request->zip,
         'photo' => $request->photo,
-        'birdthday' => $request->birdthday,
+        'birthday' => $request->birthday,
         'blood_type' => $request->blood_type,
-        'religion' => $request->religion,
-        'roles' => $request->roles
+
       ]);
       $user->assignRole($request->input('roles'));
       return response()->json([
@@ -133,7 +135,6 @@ class UserController extends Controller
       'blood_type' => 'required',
       'religion' => 'required',
       'roles' => 'required'
-
     ]);
 
     try {
